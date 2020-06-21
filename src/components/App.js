@@ -5,22 +5,22 @@ import Homepage from "./Homepage";
 import Login from "./Login";
 import SignIn from "./SignIn";
 import AboutUs from "./AboutUs";
-// import MessMenuForm from './MessMenuForm'
-// import Header from './Header'
+import MessCreateMenu from "./MessCreateMenu";
+import MessFoodDonate from "./MessFoodDonate";
 
 class App extends Component {
   render() {
     return (
       <div className="container-fluid px-0">
         <BrowserRouter>
-          {/* <Header /> */}
           <div>
             <Switch>
               <Route path="/" exact component={Homepage} />
               <Route path="/signup" exact component={SignIn} />
               <Route path="/login" exact component={Login} />
               <Route path="/about" exact component={AboutUs} />
-              {/* <Route path="/menu" exact component={MessMenuForm} /> */}
+              <Route path="/messcm" exact component={MessCreateMenu} />
+              <Route path="/messfd" exact component={MessFoodDonate} />
             </Switch>
           </div>
         </BrowserRouter>

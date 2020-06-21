@@ -1,0 +1,23 @@
+.donate-foodlist {
+  margin: 30px auto 10px auto;
+  height: 325px;
+  border: 1px dashed gray;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.donate-food-item {
+  margin: 10px 0px;
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.donate-food-name {
+  padding-top: 5px;
+  width: 400px;
+}
+.item-number {
+  border: none;
+  width: 35px;
+  border-radius: 2px;
+  height: 25px;
+}

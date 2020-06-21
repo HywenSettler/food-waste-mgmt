@@ -18,29 +18,29 @@ class Homepage extends Component {
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img
-                src="assets/images/children-eating.jpg"
-                className="d-block w-100 imag1"
-                alt=""
-              />
-            </div>
-            <div className="carousel-item">
-              <img
                 src="assets/images/children-sitting.jpg"
-                className="d-block w-100 imag1"
+                className="d-block w-100 carousel-image"
                 alt=""
               />
             </div>
             <div className="carousel-item">
               <img
-                src="assets/images/food-wasted.jpg"
-                className="d-block w-100 imag1"
+                src="assets/images/children-eating.jpg"
+                className="d-block w-100 carousel-image"
                 alt=""
               />
             </div>
             <div className="carousel-item">
               <img
-                src="assets/images/hungry-children.jpg"
-                className="d-block w-100 imag1"
+                src="assets/images/im-hungry.jpg"
+                className="d-block w-100 carousel-image"
+                alt=""
+              />
+            </div>
+            <div className="carousel-item">
+              <img
+                src="assets/images/sankalp-club.jpg"
+                className="d-block w-100 carousel-image"
                 alt=""
               />
             </div>
@@ -70,9 +70,9 @@ class Homepage extends Component {
             <span className="sr-only">Next</span>
           </a>
         </div>
-        <div className="div1">
+        <div className="problemdiv">
           <h1>The Problem</h1>
-          <p className="p1">
+          <p className="problem-text">
             There is food for everyone on this planet; not everyone eats.
           </p>
           <div className="container">
@@ -80,8 +80,8 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/hungry-women.jpg"
-                    className="pokimg"
+                    src="assets/images/food-wasted.jpg"
+                    className="problem-image"
                     alt=""
                   />
                 </div>
@@ -90,8 +90,8 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/im-hungry.jpg"
-                    className="pokimg"
+                    src="assets/images/masked-children.jpg"
+                    className="problem-image"
                     alt=""
                   />
                 </div>
@@ -103,8 +103,8 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/masked-children.jpg"
-                    className="pokimg"
+                    src="assets/images/naked-baby.jpg"
+                    className="problem-image"
                     alt=""
                   />
                 </div>
@@ -118,8 +118,8 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/naked-baby.jpg"
-                    className="pokimg"
+                    src="assets/images/old-men.jpg"
+                    className="problem-image"
                     alt=""
                   />
                 </div>
@@ -128,8 +128,8 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/old-men.jpg"
-                    className="pokimg"
+                    src="assets/images/hungry-children.jpg"
+                    className="problem-image"
                     alt=""
                   />
                 </div>
@@ -142,8 +142,8 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/sankalp-club.jpg"
-                    className="pokimg"
+                    src="assets/images/hungry-women.jpg"
+                    className="problem-image"
                     alt=""
                   />
                 </div>
@@ -155,9 +155,9 @@ class Homepage extends Component {
             </div>
           </div>
         </div>
-        <div className="div1" style={{ backgroundColor: "rgb(163, 148, 161)" }}>
+        <div className="visiondiv">
           <h1>Our Vision</h1>
-          <p className="paragr1">
+          <p className="visiontext">
             Although food wastage is a global problem, India stands a chance to
             convert this into an opportunity. Every third malnourished child is
             Indian. Even so, we are witness to this significant amount of food
@@ -167,18 +167,18 @@ class Homepage extends Component {
             median between food-producing and food-supplying services.
           </p>
         </div>
-        <div className="div2" style={{ backgroundColor: "rgb(57, 121, 133)" }}>
-          <h1 className="headinstraight">How You Can Help</h1>
-          <div className="div3">
+        <div className="hcyhdiv">
+          <h1 className="mb-4 text-white">How You Can Help</h1>
+          <div className="hcyhlist">
             <div>
-              <h5 className="heading2">Contribute Food</h5>
+              <h5 className="hcyhitem">Contribute Food</h5>
               <p>
                 If you are the owner or manager of a restaurant, or generally
                 want to contribute meals, let's join.
               </p>
             </div>
             <div>
-              <h5 className="heading2">Donate</h5>
+              <h5 className="hcyhitem">Donate</h5>
               <p>
                 If you are not unable to contribute food, but want to support to
                 the foundation, donate to the cause.
@@ -186,32 +186,35 @@ class Homepage extends Component {
             </div>
           </div>
         </div>
-        <div className="div4">
-          <span className="spn1">Any concerns you have?</span>
-          <span className="spn1">
-            <input type="button" value="Talk to Us" className="buton1" />
+        <div className="concerndiv">
+          <span className="mx-4">Any concerns you have?</span>
+          <span className="mx-4">
+            <input type="button" value="Talk to Us" className="ttubutton" />
           </span>
         </div>
-        <footer className="foot bg-secondary text-white">
-          <div className="spn2">
-            <div className="div5">Who we are</div>
-            <Link to="/about" className="nav-link text-white pl-0 py-0">
-              <div className="div6">About Us</div>
-            </Link>
-            <div className="div6">Contact Us</div>
+        <footer className="footer-styling bg-secondary text-white">
+          <div className="footersection">
+            <div className="footerheading">Who we are</div>
+            <div className="footeritem">
+              <Link to="/about" className="nav-link text-white pl-0 py-0">
+                {" "}
+                About Us
+              </Link>
+            </div>
+            <div className="footeritem">Contact Us</div>
           </div>
-          <div className="spn2">
-            <div className="div5">Get Involved</div>
-            <div className="div6">Donate</div>
-            <div className="div6">Partner With Us</div>
+          <div className="footersection">
+            <div className="footerheading">Get Involved</div>
+            <div className="footeritem">Donate</div>
+            <div className="footeritem">Partner With Us</div>
           </div>
-          <div className="spn2">
-            <div className="div5">Social</div>
+          <div className="footersection">
+            <div className="footerheading">Social</div>
             <div>
-              <span className="spn3 mr-3">
+              <span className="social-icons">
                 <i className="fab fa-facebook"></i>
               </span>
-              <span className="spn3">
+              <span className="social-icons">
                 <i className="fab fa-instagram"></i>
               </span>
             </div>
