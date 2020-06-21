@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Homepage from "./Homepage";
-import Login from "./Login";
 import SignIn from "./SignIn";
 import AboutUs from "./AboutUs";
 import MessCreateMenu from "./MessCreateMenu";
@@ -17,7 +16,6 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={Homepage} />
               <Route path="/signup" exact component={SignIn} />
-              <Route path="/login" exact component={Login} />
               <Route path="/about" exact component={AboutUs} />
               <Route path="/messcm" exact component={MessCreateMenu} />
               <Route path="/messfd" exact component={MessFoodDonate} />
