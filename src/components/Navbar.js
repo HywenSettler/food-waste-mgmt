@@ -47,7 +47,7 @@ export class Navbar extends Component {
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-white anchor-item" to="/signup">
-                  Sign In
+                  Sign Up
                 </Link>
               </li>
             </ul>
