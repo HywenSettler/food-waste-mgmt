@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 
 import "./MessCreateMenu.css";
 import "./MessFoodDonate.css";
-import styled from "styled-components";
 
 export class MessFoodDonate extends Component {
   render() {

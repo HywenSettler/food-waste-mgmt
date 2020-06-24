@@ -48,7 +48,9 @@ class MessCreateMenu extends Component {
         <form className="msform">
           <ul className="progressbar pl-0">
             {food.map((item, idx) => (
-              <li className={idx <= selectedTab ? "active" : ""}>{item}</li>
+              <li key={idx} className={idx <= selectedTab ? "active" : ""}>
+                {item}
+              </li>
             ))}
           </ul>
 
@@ -82,7 +84,7 @@ class MessCreateMenu extends Component {
               <Fragment>
                 <div className="foodlist">
                   {breakfast.map((item, idx) => (
-                    <div className="food-item">
+                    <div key={item} className="food-item">
                       <span className="food-name">{item}</span>
                       <span>
                         <button
@@ -111,7 +113,7 @@ class MessCreateMenu extends Component {
               <Fragment>
                 <div className="foodlist">
                   {lunch.map((item, idx) => (
-                    <div className="food-item">
+                    <div key={item} className="food-item">
                       <span className="food-name">{item}</span>
                       <span>
                         <button
@@ -149,7 +151,7 @@ class MessCreateMenu extends Component {
               <Fragment>
                 <div className="foodlist">
                   {dinner.map((item, idx) => (
-                    <div className="food-item">
+                    <div key={item} className="food-item">
                       <span className="food-name">{item}</span>
                       <span>
                         <button
