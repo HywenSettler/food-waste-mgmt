@@ -1,0 +1,37 @@
+.externcontdiv {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.contdiv {
+  width: 35%;
+  margin-top: 150px;
+}
+
+.headingstyle {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: 1px 1px gray;
+}
+
+.inputsty {
+  border: none;
+  border-bottom: 1px gray solid;
+  box-shadow: 1px gray;
+}
+
+.textstyle {
+  border: 1px gray solid;
+  box-shadow: 1px gray;
+}
+
+.imagediv {
+  width: 45%;
+  margin-top: 75px;
+  margin-left: 10px;
+}
+
+.imagesize {
+  width: 45vw;
+  height: 70vh;
+  margin: 0;
+}

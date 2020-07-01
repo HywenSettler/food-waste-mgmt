@@ -201,7 +201,12 @@ class Homepage extends Component {
                 About Us
               </Link>
             </div>
-            <div className="footeritem">Contact Us</div>
+            <div className="footeritem">
+              <Link to="/contact" className="nav-link text-white pl-0 py-0">
+                {" "}
+                Contact Us
+              </Link>
+            </div>
           </div>
           <div className="footersection">
             <div className="footerheading">Get Involved</div>

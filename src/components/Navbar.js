@@ -30,7 +30,10 @@ export class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            clasnsName="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav mr-auto">
               <li className="nav-item linkitem-home">
                 <Link className="nav-link text-white anchor-item" to="/">

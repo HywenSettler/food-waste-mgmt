@@ -6,6 +6,7 @@ import SignIn from "./SignIn";
 import AboutUs from "./AboutUs";
 import MessCreateMenu from "./MessCreateMenu";
 import MessFoodDonate from "./MessFoodDonate";
+import ContactUs from "./ContactUs";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <Route path="/about" exact component={AboutUs} />
               <Route path="/messcm" exact component={MessCreateMenu} />
               <Route path="/messfd" exact component={MessFoodDonate} />
+              <Route path="/contact" exact component={ContactUs} />
             </Switch>
           </div>
         </BrowserRouter>

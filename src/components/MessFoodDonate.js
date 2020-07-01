@@ -39,25 +39,13 @@ export class MessFoodDonate extends Component {
             </div>
             <div class="donate-foodlist">
               <div class="donate-food-item">
-                <span class="donate-food-name">Pheromosa</span>
+                <span class="donate-food-name">Cutlets</span>
                 <span>
                   <input type="number" class="item-number" min="0"></input>
                 </span>
               </div>
               <div class="donate-food-item">
-                <span class="donate-food-name">Kartana</span>
-                <span>
-                  <input type="number" class="item-number" min="0"></input>
-                </span>
-              </div>
-              <div class="donate-food-item">
-                <span class="donate-food-name">Celesteela</span>
-                <span>
-                  <input type="number" class="item-number" min="0"></input>
-                </span>
-              </div>
-              <div class="donate-food-item">
-                <span class="donate-food-name">Guzzlord</span>
+                <span class="donate-food-name">Bread slices</span>
                 <span>
                   <input type="number" class="item-number" min="0"></input>
                 </span>
