@@ -1,0 +1,10 @@
+.column-style-div {
+  border-bottom: 1px solid gray;
+  height: 100px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

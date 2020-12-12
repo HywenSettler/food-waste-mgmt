@@ -1,0 +1,60 @@
+.outside-div {
+  height: 90vh;
+  width: 100%;
+  background-color: lavender;
+}
+
+.welcome-span {
+  height: 100%;
+  width: 50%;
+}
+
+.image-dim {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin-top: 5%;
+}
+
+.hi-text {
+  height: 30%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.welcome-text {
+  font-size: 200%;
+  padding-left: 8%;
+  margin-top: -5%;
+}
+
+.search-div {
+  width: 70%;
+}
+
+.graph-div {
+  height: 500px;
+  width: 500px;
+  margin-top: 2%;
+  margin-left: 5%;
+  padding-bottom: 2%;
+}
+
+.card-span {
+  height: 100%;
+  width: 20%;
+}
+
+.card-div {
+  width: 18rem;
+  border-radius: 20px 20px;
+}
+
+.img-size {
+  height: 70%;
+}
+
+.side-span-card {
+  width: 18rem;
+  height: 97%;
+  border-radius: 15px;
+}

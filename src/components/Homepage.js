@@ -18,28 +18,28 @@ class Homepage extends Component {
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img
-                src="assets/images/children-sitting.jpg"
+                src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699318/food-waste-mgmt/children-sitting.jpg"
                 className="d-block w-100 carousel-image"
                 alt=""
               />
             </div>
             <div className="carousel-item">
               <img
-                src="assets/images/children-eating.jpg"
+                src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699286/food-waste-mgmt/children-eating.jpg"
                 className="d-block w-100 carousel-image"
                 alt=""
               />
             </div>
             <div className="carousel-item">
               <img
-                src="assets/images/im-hungry.jpg"
+                src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699267/food-waste-mgmt/im-hungry.jpg"
                 className="d-block w-100 carousel-image"
                 alt=""
               />
             </div>
             <div className="carousel-item">
               <img
-                src="assets/images/sankalp-club.jpg"
+                src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699320/food-waste-mgmt/sankalp-club.jpg"
                 className="d-block w-100 carousel-image"
                 alt=""
               />
@@ -80,7 +80,7 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/food-wasted.jpg"
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699247/food-waste-mgmt/food-wasted.jpg"
                     className="problem-image"
                     alt=""
                   />
@@ -90,7 +90,7 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/masked-children.jpg"
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699267/food-waste-mgmt/masked-children.jpg"
                     className="problem-image"
                     alt=""
                   />
@@ -103,7 +103,7 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/naked-baby.jpg"
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699254/food-waste-mgmt/naked-baby.jpg"
                     className="problem-image"
                     alt=""
                   />
@@ -118,7 +118,7 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/old-men.jpg"
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699258/food-waste-mgmt/old-men.jpg"
                     className="problem-image"
                     alt=""
                   />
@@ -128,7 +128,7 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/hungry-children.jpg"
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699244/food-waste-mgmt/hungry-children.jpg"
                     className="problem-image"
                     alt=""
                   />
@@ -142,7 +142,7 @@ class Homepage extends Component {
               <div className="col-sm">
                 <div>
                   <img
-                    src="assets/images/hungry-women.jpg"
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699272/food-waste-mgmt/hungry-women.jpg"
                     className="problem-image"
                     alt=""
                   />
