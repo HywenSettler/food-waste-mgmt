@@ -1,16 +1,43 @@
-import React, { Fragment } from "react";
+import React, { useReducer } from "react";
 
-import Navbar from "./Navbar";
+function registerFormReducer(state, action) {
+  switch (action.type) {
+    case "EMAIL":
+      return { ...state, email: action.payload };
 
-function SignIn() {
+    case "PASSWORD":
+      return { ...state, password: action.payload };
+
+    default: {
+      // helps us avoid typos!
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+}
+
+const RegisterForm = () => {
+  const [state, dispatch] = useReducer(registerFormReducer, {
+    email: "",
+    password: ""
+  });
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(state);
+  };
+
+  const { email, password } = state;
+
   return (
-    <Fragment>
+    <>
       <div style={{ paddingBottom: "15px" }}>
-        <Navbar />
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-6 mt-5">
-              <form className="border border-success rounded p-5">
+            <div className="mt-3">
+              <form
+                className="border border-success rounded p-5"
+                onSubmit={onFormSubmit}
+              >
                 <div className="form-group">
                   <label htmlFor="inputName">Organization Name</label>
                   <input
@@ -27,6 +54,10 @@ function SignIn() {
                       type="email"
                       className="form-control"
                       id="inputEmail4"
+                      value={email}
+                      onChange={(e) =>
+                        dispatch({ type: "EMAIL", payload: e.target.value })
+                      }
                     />
                   </div>
                   <div className="form-group col-md-6">
@@ -35,6 +66,10 @@ function SignIn() {
                       type="password"
                       className="form-control"
                       id="inputPassword4"
+                      value={password}
+                      onChange={(e) =>
+                        dispatch({ type: "PASSWORD", payload: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -64,8 +99,8 @@ function SignIn() {
                     className="form-control"
                     id="exampleFormControlSelect1"
                   >
-                    <option>Donor</option>
-                    <option>Recipient</option>
+                    <option>Mess</option>
+                    <option>NGO</option>
                   </select>
                 </div>
                 <div className="form-row">
@@ -109,8 +144,8 @@ function SignIn() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
-}
+};
 
-export default SignIn;
+export default RegisterForm;

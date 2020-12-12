@@ -4,11 +4,13 @@ import { Modal } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 
 import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   return (
     <>
@@ -26,7 +28,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div clasnsName="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item linkitem-home">
               <Link className="nav-link text-white anchor-item" to="/">
@@ -36,30 +38,43 @@ const Navbar = () => {
             <li className="nav-item mr-3">
               <Nav.Link
                 className="nav-link text-white anchor-item"
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsLoginOpen(true)}
               >
                 Log In
               </Nav.Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white anchor-item" to="/signup">
-                Sign Up
-              </Link>
+              <Nav.Link
+                className="nav-link text-white anchor-item"
+                onClick={() => setIsRegisterOpen(true)}
+              >
+                Register
+              </Nav.Link>
             </li>
           </ul>
         </div>
       </nav>
       <Modal
-        show={isOpen}
+        show={isLoginOpen}
         size="lg"
-        onHide={() => setIsOpen(false)}
+        onHide={() => setIsLoginOpen(false)}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Body>
-          <LoginForm
-            functionToCallAfterFormSubmitToCloseModal={() => setIsOpen(false)}
-          />
+          <LoginForm />
+        </Modal.Body>
+      </Modal>
+      <Modal
+        show={isRegisterOpen}
+        size="lg"
+        onHide={() => setIsRegisterOpen(false)}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        scrollable
+      >
+        <Modal.Body>
+          <RegisterForm />
         </Modal.Body>
       </Modal>
     </>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Homepage from "./Homepage";
-import SignIn from "./SignIn";
 import AboutUs from "./AboutUs";
 import MessCreateMenu from "./MessCreateMenu";
 import MessFoodDonate from "./MessFoodDonate";
@@ -19,7 +18,6 @@ class App extends Component {
           <div>
             <Switch>
               <Route path="/" exact component={Homepage} />
-              <Route path="/signup" exact component={SignIn} />
               <Route path="/about" exact component={AboutUs} />
               <Route path="/create-menu" exact component={MessCreateMenu} />
               <Route path="/donate" exact component={MessFoodDonate} />
