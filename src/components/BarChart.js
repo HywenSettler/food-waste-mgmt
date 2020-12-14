@@ -25,8 +25,14 @@ const BarChart = () => {
       .domain([0, d3.max(data, (d) => d.quantity)])
       .range([0, 300]);
 
-    const canvas = d3
-      .select(".canvas")
+    let yScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(data, (d) => d.quantity)])
+      .range([300, 0]);
+
+    const canvas = d3.select(".canvas");
+
+    canvas
       .selectAll("rect")
       .data(data)
       .enter()
@@ -37,12 +43,22 @@ const BarChart = () => {
       .attr("y", (d) => 300 - heightScale(d.quantity))
       .attr("fill", "blue");
 
+    canvas
+      .append("g")
+      .attr("transform", "translate(0, 300)")
+      .call(d3.axisBottom(xposition));
+
+    canvas
+      .append("g")
+      .attr("transform", "translate(20, 0)")
+      .call(d3.axisLeft(yScale).ticks(5));
+
     // console.log(canvas);
   };
 
   return (
     <div>
-      <svg className="canvas" height="400" width="500"></svg>
+      <svg className="canvas ml-3 mt-3" height="400" width="500"></svg>
     </div>
   );
 };
