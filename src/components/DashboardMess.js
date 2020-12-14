@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
+import BarChart from "./BarChart";
 
 import "./Dashboard.css";
 
@@ -34,11 +35,12 @@ const DashboardMess = () => {
               </span>
             </div>
           </div>
-          <img
+          {/* <img
             src="https://images.twinkl.co.uk/tw1n/image/private/t_630/u/ux/barchart_ver_1.jpg"
             className="graph-div"
             alt="..."
-          />
+          /> */}
+          <BarChart />
         </span>
         <span className="card-span mt-2">
           <div className="card card-div">
