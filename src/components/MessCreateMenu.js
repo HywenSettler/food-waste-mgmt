@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
+import SelectSearch from "react-select-search";
 
 import Navbar from "./Navbar";
 
 import "./MessCreateMenu.css";
+import "./Search.css";
 
 const food = ["breakfast", "lunch", "dinner"];
 const tabMap = {
@@ -10,6 +12,11 @@ const tabMap = {
   1: "Lunch",
   2: "Dinner",
 };
+
+const options = [
+  { name: "Swedish", value: "sv" },
+  { name: "English", value: "en" },
+];
 
 class MessCreateMenu extends Component {
   state = {
@@ -58,6 +65,14 @@ class MessCreateMenu extends Component {
             <h2 className="fs-title">Create your menu</h2>
             <h3 className="fs-subtitle">{tabMap[selectedTab]}</h3>
             <div className="input-group">
+              {/* <SelectSearch
+                options={options}
+                value="sv"
+                name="language"
+                placeholder="Choose your language"
+                search
+                autoFocus
+              /> */}
               <input
                 type="text"
                 value={foodItem}
@@ -85,6 +100,13 @@ class MessCreateMenu extends Component {
                 <div className="foodlist">
                   {breakfast.map((item, idx) => (
                     <div key={item} className="food-item">
+                      <span className="food-image">
+                        <img
+                          src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699247/food-waste-mgmt/food-wasted.jpg"
+                          height="50px"
+                          width="60px"
+                        />
+                      </span>
                       <span className="food-name">{item}</span>
                       <span>
                         <button

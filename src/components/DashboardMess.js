@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
 import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 
 import "./Dashboard.css";
 
@@ -41,6 +42,7 @@ const DashboardMess = () => {
             alt="..."
           /> */}
           <BarChart />
+          <PieChart />
         </span>
         <span className="card-span mt-2">
           <div className="card card-div">

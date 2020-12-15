@@ -9,7 +9,7 @@
 }
 /*form styles*/
 .msform {
-  width: 400px;
+  width: 700px;
   margin: 50px auto;
   text-align: center;
   position: relative;
@@ -135,17 +135,27 @@
 }
 .food-item {
   margin: 2px 0px;
-  height: 25px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
 }
+
+.food-image {
+  height: 50px;
+  width: 60px;
+}
 .food-name {
   width: 400px;
+  height: 40px;
+  margin-top: 10px;
+  font-size: 25px;
 }
 .addbutton {
   border: none;
   width: 35px;
   border-radius: 2px;
+  height: 40px;
+  margin-top: 5px;
 }
 
 .test {

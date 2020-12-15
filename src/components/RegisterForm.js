@@ -18,7 +18,7 @@ function registerFormReducer(state, action) {
 const RegisterForm = () => {
   const [state, dispatch] = useReducer(registerFormReducer, {
     email: "",
-    password: ""
+    password: "",
   });
 
   const onFormSubmit = (e) => {
@@ -43,7 +43,7 @@ const RegisterForm = () => {
                   <input
                     type="text"
                     className="form-control"
-                    id="inputAddress"
+                    id="inputName"
                     placeholder="ABC"
                   />
                 </div>
@@ -83,15 +83,6 @@ const RegisterForm = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="inputAddress2">Address 2</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inputAddress2"
-                    placeholder="Apartment, studio, or floor"
-                  />
-                </div>
-                <div className="form-group">
                   <label htmlFor="exampleFormControlSelect1">
                     Select Category
                   </label>
@@ -116,24 +107,42 @@ const RegisterForm = () => {
                     <label htmlFor="inputState">State</label>
                     <select id="inputState" className="form-control">
                       <option selected>Choose...</option>
-                      <option>...</option>
+                      {[
+                        "Andhra Pradesh",
+                        "Arunachal Pradesh",
+                        "Assam",
+                        "Bihar",
+                        "Chhattisgarh",
+                        "Goa",
+                        "Gujarat",
+                        "Haryana",
+                        "Himachal Pradesh",
+                        "Jharkhand",
+                        "Karnataka",
+                        "Kerala",
+                        "Madhya Pradesh",
+                        "Maharashtra",
+                        "Manipur",
+                        "Meghalaya",
+                        "Mizoram",
+                        "Nagaland",
+                        "Odisha",
+                        "Punjab",
+                        "Rajasthan",
+                        "Sikkim",
+                        "Tamil Nadu",
+                        "Telangana",
+                        "Tripura",
+                        "Uttarakhand",
+                        "West Bengal",
+                      ].map((state) => (
+                        <option>{state}</option>
+                      ))}
                     </select>
                   </div>
                   <div className="form-group col-md-2">
-                    <label htmlFor="inputZip">Zip</label>
-                    <input type="text" className="form-control" id="inputZip" />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="gridCheck"
-                    />
-                    <label className="form-check-label" htmlFor="gridCheck">
-                      Check me out
-                    </label>
+                    <label htmlFor="inputPin">PIN Code</label>
+                    <input type="text" className="form-control" id="inputPin" />
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary">
