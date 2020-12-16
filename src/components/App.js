@@ -9,6 +9,7 @@ import ContactUs from "./ContactUs";
 import DashboardMess from "./DashboardMess";
 import DashboardNGO from "./DashboardNGO";
 import History from "./History";
+import Menu from "./Menu";
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
               <Route path="/contact" exact component={ContactUs} />
               <Route path="/dashboard" exact component={DashboardMess} />
               <Route path="/history" exact component={History} />
+              <Route path="/menu" exact component={Menu} />
             </Switch>
           </div>
         </BrowserRouter>
