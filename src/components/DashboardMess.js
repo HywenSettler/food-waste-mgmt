@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, Fragment} from "react";
 import { Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
@@ -8,6 +8,12 @@ import PieChart from "./PieChart";
 import "./Dashboard.css";
 
 const DashboardMess = () => {
+  // false - Pie Chart & true - Bar Chart
+  const [chart, setChart] = useState(false);
+  const toggleChart = () => {
+    setChart(!chart);
+  }
+
   return (
     <div>
       <Navbar />
@@ -41,8 +47,15 @@ const DashboardMess = () => {
             className="graph-div"
             alt="..."
           /> */}
-          <BarChart />
-          <PieChart />
+
+          {chart && (<Fragment>
+                        <BarChart />
+                        <button type="button" class="btn btn-primary" onClick={toggleChart}>Show Pie</button> 
+                      </Fragment>)}
+          {!chart && (<Fragment>
+                        <PieChart />
+                        <button type="button" class="btn btn-primary" onClick={toggleChart}>Show Bar</button> 
+                      </Fragment>)}
         </span>
         <span className="card-span mt-2">
           <div className="card card-div">
