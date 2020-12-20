@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Navbar from "./Navbar";
+import Navbar from '../Navbar';
 
-import "./ContactUs.css";
+import './ContactUs.css';
 
 export class ContactUs extends Component {
   render() {

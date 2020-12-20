@@ -1,34 +1,52 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Homepage from "./Homepage";
-import AboutUs from "./AboutUs";
-import MessCreateMenu from "./MessCreateMenu";
-import MessFoodDonate from "./MessFoodDonate";
-import ContactUs from "./ContactUs";
-import Dashboard from "./Dashboard";
-import History from "./History";
-import Menu from "./Menu";
+import ProtectedRoute from './ProtectedRoute';
+import Unauthorized from './Unauthorized';
+import Homepage from './HomePage';
+import AboutUs from './AboutUs';
+import MessCreateMenu from './MessCreateMenu';
+import MessFoodDonate from './MessFoodDonate';
+import ContactUs from './ContactUs';
+import Dashboard from './Dashboard';
+import History from './History';
+import Menu from './Menu';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container-fluid px-0">
-        <BrowserRouter>
-          <Switch>
-            <Route path="/" exact component={Homepage} />
-            <Route path="/about" exact component={AboutUs} />
-            <Route path="/create-menu" exact component={MessCreateMenu} />
-            <Route path="/donate" exact component={MessFoodDonate} />
-            <Route path="/contact" exact component={ContactUs} />
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/history" exact component={History} />
-            <Route path="/menu" exact component={Menu} />
-          </Switch>
-        </BrowserRouter>
-      </div>
-    );
-  }
-}
+const App = ({ isLoggedIn }) => {
+  return (
+    <div className="container-fluid px-0">
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={Homepage} />
+          <Route path="/about" exact component={AboutUs} />
+          <ProtectedRoute
+            path="/create-menu"
+            exact
+            component={MessCreateMenu}
+            isLoggedIn={isLoggedIn}
+          />
+          <Route path="/donate" exact component={MessFoodDonate} />
+          <Route path="/contact" exact component={ContactUs} />
+          <ProtectedRoute
+            path="/dashboard"
+            exact
+            component={Dashboard}
+            isLoggedIn={isLoggedIn}
+          />
+          <Route path="/history" exact component={History} />
+          <Route path="/menu" exact component={Menu} />
+          <Route path="/unauthorized" exact component={Unauthorized} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  };
+};
+
+export default connect(mapStateToProps)(App);
