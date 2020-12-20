@@ -11,7 +11,7 @@ const BarChart = () => {
       { name: "roti", quantity: 20 },
       { name: "rajma", quantity: 30 },
       { name: "paneer", quantity: 10 },
-      { name: "pav bhaji", quantity: 3 }
+      { name: "pav bhaji", quantity: 3 },
     ];
 
     let xposition = d3
@@ -41,7 +41,7 @@ const BarChart = () => {
       .attr("width", xposition.bandwidth())
       .attr("x", (d) => xposition(d.name))
       .attr("y", (d) => 300 - heightScale(d.quantity))
-      .attr("fill", "blue");
+      .attr("fill", "brown");
 
     canvas
       .append("g")
