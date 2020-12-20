@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from "react";
+import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
@@ -7,12 +7,12 @@ import PieChart from "./PieChart";
 
 import "./Dashboard.css";
 
-const DashboardMess = () => {
+const Dashboard = () => {
   // false - Pie Chart & true - Bar Chart
   const [chart, setChart] = useState(false);
   const toggleChart = () => {
     setChart(!chart);
-  }
+  };
 
   return (
     <div>
@@ -42,20 +42,30 @@ const DashboardMess = () => {
               </span>
             </div>
           </div>
-          {/* <img
-            src="https://images.twinkl.co.uk/tw1n/image/private/t_630/u/ux/barchart_ver_1.jpg"
-            className="graph-div"
-            alt="..."
-          /> */}
-
-          {chart && (<Fragment>
-                        <BarChart />
-                        <button type="button" class="btn btn-primary" onClick={toggleChart}>Show Pie</button> 
-                      </Fragment>)}
-          {!chart && (<Fragment>
-                        <PieChart />
-                        <button type="button" class="btn btn-primary" onClick={toggleChart}>Show Bar</button> 
-                      </Fragment>)}
+          {chart && (
+            <Fragment>
+              <BarChart />
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={toggleChart}
+              >
+                Show Pie
+              </button>
+            </Fragment>
+          )}
+          {!chart && (
+            <Fragment>
+              <PieChart />
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={toggleChart}
+              >
+                Show Bar
+              </button>
+            </Fragment>
+          )}
         </span>
         <span className="card-span mt-2">
           <div className="card card-div">
@@ -106,4 +116,4 @@ const DashboardMess = () => {
   );
 };
 
-export default DashboardMess;
+export default Dashboard;
