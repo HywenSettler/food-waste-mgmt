@@ -62,13 +62,14 @@ const RegisterForm = (props) => {
 		e.preventDefault()
 		foodMgmtApi
 			.post('/register', state)
-			.then((response) => {
-				props.logIn()
-				foodMgmtApi.post('/login', response.data)
+			.then(() => {
+				return foodMgmtApi.post('/login', { email: state.email, password: state.password })
 			})
-			.then((tokens) => {
-				localStorage.setItem('accessToken', tokens.access_token)
-				localStorage.setItem('refreshToken', tokens.refresh_token)
+			.then((res) => {
+				const { access_token, refresh_token } = res.data.tokens
+				sessionStorage.setItem('accessToken', access_token)
+				sessionStorage.setItem('refreshToken', refresh_token)
+				props.logIn()
 
 				history.push('/dashboard')
 			})
