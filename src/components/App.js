@@ -11,12 +11,14 @@ import MessFoodDonate from './MessFoodDonate';
 import ContactUs from './ContactUs';
 import Dashboard from './Dashboard';
 import History from './History';
-import Menu from './Menu';
+import MenuDisplay from './MenuDisplay';
+import Navbar from './Navbar';
 
 const App = ({ isLoggedIn }) => {
   return (
     <div className="container-fluid px-0">
       <BrowserRouter>
+        <Navbar />
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/about" exact component={AboutUs} />
@@ -35,7 +37,7 @@ const App = ({ isLoggedIn }) => {
             isLoggedIn={isLoggedIn}
           />
           <Route path="/history" exact component={History} />
-          <Route path="/menu" exact component={Menu} />
+          <Route path="/menu" exact component={MenuDisplay} />
           <Route path="/unauthorized" exact component={Unauthorized} />
         </Switch>
       </BrowserRouter>

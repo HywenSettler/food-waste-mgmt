@@ -1,14 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../Navbar';
-
 import './Homepage.css';
 
 const HomePage = () => {
   return (
     <div>
-      <Navbar />
       <div
         id="carouselExampleControls"
         className="carousel slide"

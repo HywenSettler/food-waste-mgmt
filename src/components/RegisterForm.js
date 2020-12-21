@@ -36,7 +36,7 @@ function registerFormReducer(state, action) {
       return { ...state, state: action.payload };
 
     case PINCODE:
-      return { ...state, pinCode: action.payload };
+      return { ...state, pincode: action.payload };
 
     case ADDRESS:
       return { ...state, address: action.payload };
@@ -75,6 +75,7 @@ const stateOptions = [
   'Telangana',
   'Tripura',
   'Uttarakhand',
+  'Uttar Pradesh',
   'West Bengal'
 ];
 

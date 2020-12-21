@@ -103,7 +103,7 @@
 }
 /*progressbar connectors*/
 .progressbar li:after {
-  content: "";
+  content: '';
   width: 100%;
   height: 2px;
   background: white;

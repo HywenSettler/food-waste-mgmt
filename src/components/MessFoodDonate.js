@@ -1,15 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Navbar from "./Navbar";
-
-import "./MessCreateMenu.css";
-import "./MessFoodDonate.css";
+import './MessCreateMenu.css';
+import './MessFoodDonate.css';
 
 export class MessFoodDonate extends Component {
   render() {
     return (
       <div class="messcmbody">
-        <Navbar />
         <form class="msform">
           <ul class="progressbar pl-0">
             <li class="active">Breakfast</li>

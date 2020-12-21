@@ -1,21 +1,19 @@
-import React, { Component, Fragment } from "react";
-import SelectSearch from "react-select-search";
+import React, { Component, Fragment } from 'react';
+import SelectSearch from 'react-select-search';
 
-import Navbar from "./Navbar";
+import './MessCreateMenu.css';
+import './Search.css';
 
-import "./MessCreateMenu.css";
-import "./Search.css";
-
-const food = ["breakfast", "lunch", "dinner"];
+const food = ['breakfast', 'lunch', 'dinner'];
 const tabMap = {
-  0: "Breakfast",
-  1: "Lunch",
-  2: "Dinner",
+  0: 'Breakfast',
+  1: 'Lunch',
+  2: 'Dinner'
 };
 
 const options = [
-  { name: "Swedish", value: "sv" },
-  { name: "English", value: "en" },
+  { name: 'Swedish', value: 'sv' },
+  { name: 'English', value: 'en' }
 ];
 
 class MessCreateMenu extends Component {
@@ -23,8 +21,8 @@ class MessCreateMenu extends Component {
     breakfast: [],
     lunch: [],
     dinner: [],
-    foodItem: "",
-    selectedTab: 0,
+    foodItem: '',
+    selectedTab: 0
   };
 
   onInputChange = (foodItem) => {
@@ -32,17 +30,17 @@ class MessCreateMenu extends Component {
   };
 
   addItem = (arr, foodItem) => {
-    if (foodItem !== "") {
+    if (foodItem !== '') {
       this.setState({
         [arr]: [...this.state[arr], foodItem],
-        foodItem: "",
+        foodItem: ''
       });
     }
   };
 
   removeItem = (arr, idx) => {
     this.setState({
-      [arr]: this.state[arr].filter((_, index) => index !== idx),
+      [arr]: this.state[arr].filter((_, index) => index !== idx)
     });
   };
 
@@ -51,11 +49,10 @@ class MessCreateMenu extends Component {
 
     return (
       <div className="messcmbody">
-        <Navbar />
         <form className="msform">
           <ul className="progressbar pl-0">
             {food.map((item, idx) => (
-              <li key={idx} className={idx <= selectedTab ? "active" : ""}>
+              <li key={idx} className={idx <= selectedTab ? 'active' : ''}>
                 {item}
               </li>
             ))}
@@ -111,7 +108,7 @@ class MessCreateMenu extends Component {
                       <span>
                         <button
                           type="button"
-                          onClick={() => this.removeItem("breakfast", idx)}
+                          onClick={() => this.removeItem('breakfast', idx)}
                           className="addbutton bg-info"
                         >
                           –
@@ -140,7 +137,7 @@ class MessCreateMenu extends Component {
                       <span>
                         <button
                           type="button"
-                          onClick={() => this.removeItem("lunch", idx)}
+                          onClick={() => this.removeItem('lunch', idx)}
                           className="addbutton bg-info"
                         >
                           –
@@ -178,7 +175,7 @@ class MessCreateMenu extends Component {
                       <span>
                         <button
                           type="button"
-                          onClick={() => this.removeItem("dinner", idx)}
+                          onClick={() => this.removeItem('dinner', idx)}
                           className="addbutton bg-info"
                         >
                           –
