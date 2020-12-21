@@ -1,7 +1,8 @@
-import { LOG_IN, LOG_OUT } from '../actions/types'
+import { LOG_IN, LOG_OUT } from '../actions/types';
 
-export const logIn = () => {
-	return {
-		type: LOG_IN
-	}
-}
+export const logIn = (authData) => {
+  return {
+    type: LOG_IN,
+    payload: authData
+  };
+};

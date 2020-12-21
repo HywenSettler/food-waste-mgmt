@@ -9,7 +9,7 @@ import RegisterForm from '../RegisterForm';
 
 import './Navbar.css';
 
-const Navbar = ({ isLoggedIn, email }) => {
+const Navbar = ({ isLoggedIn, orgName }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
@@ -32,18 +32,23 @@ const Navbar = ({ isLoggedIn, email }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item linkitem-home">
-              <Link className="nav-link text-white anchor-item" to="/">
-                Home
+              <Link
+                className="nav-link text-white anchor-item"
+                to={isLoggedIn ? '/dashboard' : '/'}
+              >
+                {isLoggedIn ? orgName : 'Home'}
               </Link>
             </li>
-            <li className="nav-item mr-3">
-              <Nav.Link
-                className="nav-link text-white anchor-item"
-                onClick={() => setIsLoginOpen(true)}
-              >
-                {isLoggedIn ? email : 'Log In'}
-              </Nav.Link>
-            </li>
+            {!isLoggedIn && (
+              <li className="nav-item mr-3">
+                <Nav.Link
+                  className="nav-link text-white anchor-item"
+                  onClick={() => setIsLoginOpen(true)}
+                >
+                  Log In
+                </Nav.Link>
+              </li>
+            )}
             <li className="nav-item">
               <Nav.Link
                 className="nav-link text-white anchor-item"
@@ -85,7 +90,7 @@ const Navbar = ({ isLoggedIn, email }) => {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.auth.isLoggedIn,
-    email: 'hello@gmail'
+    orgName: state.auth.orgName
   };
 };
 

@@ -1,5 +1,6 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import foodMgmtApi from '../../api';
 import Navbar from '../Navbar';
@@ -24,7 +25,7 @@ const Dashboard = () => {
     foodMgmtApi
       .get('/user', { headers: { Authorization: `Bearer ${accessToken}` } })
       .then((res) => {
-        setData(res.data.password);
+        setData(res.data.email);
       });
   }, []);
 
@@ -131,4 +132,10 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    isNGO: state.auth.isNGO
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);
