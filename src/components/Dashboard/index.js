@@ -102,7 +102,7 @@ const Dashboard = () => {
       <span className="mt-3 card-span" style={{ height: 'inherit' }}>
         <div className="card side-span-card">
           <img
-            src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699244/food-waste-mgmt/hungry-children.jpg"
+            src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png"
             className="card-img-top px-2 py-3 rounded-sm"
             alt="..."
           />
