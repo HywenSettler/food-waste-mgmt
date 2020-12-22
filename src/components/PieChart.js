@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import * as d3 from "d3";
+import React, { useEffect } from 'react';
+import * as d3 from 'd3';
 
 const PieChart = () => {
   useEffect(() => {
@@ -8,10 +8,10 @@ const PieChart = () => {
 
   const drawChart = () => {
     const data = [
-      { name: "roti", quantity: 20 },
-      { name: "rajma", quantity: 30 },
-      { name: "paneer", quantity: 10 },
-      { name: "pav bhaji", quantity: 3 },
+      { name: 'roti', quantity: 20 },
+      { name: 'rajma', quantity: 30 },
+      { name: 'paneer', quantity: 10 },
+      { name: 'pav bhaji', quantity: 3 }
     ];
 
     let pie = d3.pie().value((d) => d.quantity);
@@ -22,25 +22,50 @@ const PieChart = () => {
       .domain(data.map((d) => d.name));
     let arc = d3
       .arc()
-      .outerRadius(200)
-      .innerRadius(50)
+      .outerRadius(190)
+      .innerRadius(45)
       .padAngle(0.01)
       .cornerRadius(5);
 
-    const drawSpace = d3.select(".drawSpace");
+    const drawSpace = d3.select('.drawSpace');
 
     drawSpace
-      .selectAll("path")
+      .selectAll('path')
       .data(pie(data))
       .enter()
-      .append("g")
-      .append("path")
-      .attr("d", arc)
-      .attr("fill", (d) => {
+      .append('g')
+      .append('path')
+      .attr('d', arc)
+      .attr('fill', (d) => {
         console.log(d);
         return cScale(d.data.name);
       })
-      .attr("transform", "translate(250,200)");
+      .attr('transform', 'translate(190,200)');
+    var legend = drawSpace
+      .selectAll('.legend')
+      .data(cScale.domain())
+      .enter()
+      .append('g')
+      .attr('class', 'legend')
+      .attr('transform', function (d, i) {
+        var height = 22;
+        var offset = (22 * cScale.domain().length) / 2;
+        var horz = 400;
+        var vert = 75 + i * height - offset;
+        return 'translate(' + horz + ',' + vert + ')';
+      });
+    legend
+      .append('rect')
+      .attr('width', 18)
+      .attr('height', 18)
+      .style('fill', cScale)
+      .style('stroke', cScale);
+
+    legend
+      .append('text')
+      .attr('x', 22)
+      .attr('y', 14)
+      .text((d) => d);
 
     // console.log(canvas);
   };

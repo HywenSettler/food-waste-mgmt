@@ -201,26 +201,38 @@ const RegisterForm = (props) => {
                     }
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="exampleFormControlSelect1">
-                    Select Category
-                  </label>
-                  <select
-                    className="form-control"
-                    id="exampleFormControlSelect1"
-                    value={categoryValue(isNGO)}
-                    onChange={(e) =>
-                      dispatch({
-                        type: IS_NGO,
-                        payload: e.target.value === 'NGO'
-                      })
-                    }
-                  >
-                    <option value={NOT_SELECTED}>Choose...</option>
-                    {['Mess', 'NGO'].map((category) => (
-                      <option value={category}>{category}</option>
-                    ))}
-                  </select>
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <label htmlFor="exampleFormControlSelect1">
+                      Select Category
+                    </label>
+                    <select
+                      className="form-control"
+                      id="exampleFormControlSelect1"
+                      value={categoryValue(isNGO)}
+                      onChange={(e) =>
+                        dispatch({
+                          type: IS_NGO,
+                          payload: e.target.value === 'NGO'
+                        })
+                      }
+                    >
+                      <option value={NOT_SELECTED}>Choose...</option>
+                      {['Mess', 'NGO'].map((category) => (
+                        <option value={category}>{category}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="exampleFormControlSelect1">
+                      Phone Number
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputPNumber"
+                    />
+                  </div>
                 </div>
                 <div className="form-row">
                   <div className="form-group col-md-6">

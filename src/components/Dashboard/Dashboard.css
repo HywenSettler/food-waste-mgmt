@@ -18,7 +18,7 @@
 
 .hi-text {
   height: 30%;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .welcome-text {
@@ -37,6 +37,9 @@
   margin-top: 2%;
   margin-left: 5%;
   padding-bottom: 2%;
+}
+.card-img-size {
+  height: 30%;
 }
 
 .card-span {

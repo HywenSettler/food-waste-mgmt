@@ -35,6 +35,7 @@ const App = ({ isLoggedIn }) => {
             component={Dashboard}
             isLoggedIn={isLoggedIn}
           />
+          {/* <Route path="/dashboard" exact component={Dashboard} /> */}
           <Route path="/history" exact component={History} />
           <Route path="/menu" exact component={MenuDisplay} />
           <Route path="/unauthorized" exact component={Unauthorized} />

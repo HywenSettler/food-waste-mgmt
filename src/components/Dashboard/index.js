@@ -36,7 +36,7 @@ const Dashboard = () => {
         <span className="welcome-span">
           <span>
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699247/food-waste-mgmt/food-wasted.jpg"
+              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png"
               className="image-dim"
               alt="..."
             />
@@ -113,17 +113,20 @@ const Dashboard = () => {
         <span className="mt-3 card-span" style={{ height: 'inherit' }}>
           <div className="card side-span-card">
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png"
-              className="card-img-top px-2 py-3 rounded-sm"
+              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608633900/food-waste-mgmt/mess.jpg"
+              className="card-img-top card-img-size px-2 py-3 rounded-sm"
               alt="..."
             />
             <div className="card-body">
-              {/* <h5 className="card-title">Card title</h5> */}
-              <h5 className="card-title">{data}</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
+              <h5 className="card-title" style={{ color: 'blue' }}>
+                Name: {data}
+              </h5>
+              <div className="card-text">
+                <p>Address:</p>
+                <p>City:</p>
+                <p>PIN Code:</p>
+                <p>Phone Number: </p>
+              </div>
             </div>
           </div>
         </span>
