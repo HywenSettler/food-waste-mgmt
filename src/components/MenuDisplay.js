@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
 
+import Navbar from './Navbar';
+
 const MenuDisplay = () => {
   return (
     <Fragment>
+      <Navbar />
       <div class="row" id="Menu">
         <div class="col navMenu">
           <h2 class="text-center">Menu</h2>

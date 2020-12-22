@@ -12,13 +12,11 @@ import ContactUs from './ContactUs';
 import Dashboard from './Dashboard';
 import History from './History';
 import MenuDisplay from './MenuDisplay';
-import Navbar from './Navbar';
 
 const App = ({ isLoggedIn }) => {
   return (
     <div className="container-fluid px-0">
       <BrowserRouter>
-        <Navbar />
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/about" exact component={AboutUs} />

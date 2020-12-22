@@ -1,58 +1,64 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './ContactUs.css';
+import Navbar from '../Navbar';
 
-export class ContactUs extends Component {
-  render() {
-    return (
-      <div class="externcontdiv">
-        <div class="container contdiv">
-          <h1 class="mb-4 headingstyle">Drop Us a line</h1>
+const ContactUs = () => {
+  return (
+    <div>
+      <Navbar />
+      <div className="externcontdiv">
+        <div className="container contdiv">
+          <h1 className="mb-4 headingstyle">Drop Us a line</h1>
           <form>
-            <div class="form-group">
+            <div className="form-group">
               <input
                 type="text"
-                class="form-control inputsty"
+                className="form-control inputsty"
                 id="inputAddress"
                 placeholder="Full Name"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input
                 type="text"
-                class="form-control inputsty"
+                className="form-control inputsty"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="E-mail Address"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input
                 type="text"
-                class="form-control inputsty"
+                className="form-control inputsty"
                 id="inputAddress"
                 placeholder="Organization Name"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <textarea
-                class="form-control textstyle"
+                className="form-control textstyle"
                 id="exampleFormControlTextarea1"
                 rows="3"
                 placeholder="Message"
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">
+            <button type="submit" className="btn btn-primary mt-3">
               Submit
             </button>
           </form>
         </div>
-        <div class="container imagediv">
-          <img src="1.jpg" class="imagesize" alt="" />
+        <div className="container imagediv">
+          <img
+            src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699318/food-waste-mgmt/children-sitting.jpg"
+            className="imagesize"
+            alt=""
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default ContactUs;

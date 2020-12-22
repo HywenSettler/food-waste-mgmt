@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class AboutUs extends Component {
-  render() {
-    return (
+import Navbar from './Navbar';
+
+const AboutUs = () => {
+  return (
+    <div>
+      <Navbar />
       <div className="container">
         <div className="jumbotron">
           <h1 className="display-4">ABOUT US</h1>
@@ -30,8 +33,8 @@ class AboutUs extends Component {
           </p>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default AboutUs;

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import SelectSearch from 'react-select-search';
 
+import Navbar from './Navbar';
+
 import './MessCreateMenu.css';
 import './Search.css';
 
@@ -49,6 +51,7 @@ class MessCreateMenu extends Component {
 
     return (
       <div className="messcmbody">
+        <Navbar />
         <form className="msform">
           <ul className="progressbar pl-0">
             {food.map((item, idx) => (
