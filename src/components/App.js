@@ -20,12 +20,13 @@ const App = ({ isLoggedIn }) => {
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/about" exact component={AboutUs} />
-          <ProtectedRoute
+          {/* <ProtectedRoute
             path="/create-menu"
             exact
             component={MessCreateMenu}
             isLoggedIn={isLoggedIn}
-          />
+          /> */}
+          <Route path="/create-menu" exact component={MessCreateMenu} />
           <Route path="/donate" exact component={MessFoodDonate} />
           <Route path="/contact" exact component={ContactUs} />
           <ProtectedRoute

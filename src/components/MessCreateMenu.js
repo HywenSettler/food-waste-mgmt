@@ -1,21 +1,22 @@
 import React, { Component, Fragment } from 'react';
-import SelectSearch from 'react-select-search';
+import Select from 'react-select';
 
 import Navbar from './Navbar';
 
 import './MessCreateMenu.css';
-import './Search.css';
 
 const food = ['breakfast', 'lunch', 'dinner'];
+
 const tabMap = {
   0: 'Breakfast',
   1: 'Lunch',
   2: 'Dinner'
 };
 
-const options = [
-  { name: 'Swedish', value: 'sv' },
-  { name: 'English', value: 'en' }
+const colorOptions = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
 ];
 
 class MessCreateMenu extends Component {
@@ -60,41 +61,17 @@ class MessCreateMenu extends Component {
               </li>
             ))}
           </ul>
-
           <fieldset>
             <h2 className="fs-title">Create your menu</h2>
             <h3 className="fs-subtitle">{tabMap[selectedTab]}</h3>
-            <div className="input-group">
-              {/* <SelectSearch
-                options={options}
-                value="sv"
-                name="language"
-                placeholder="Choose your language"
-                search
-                autoFocus
-              /> */}
-              <input
-                type="text"
-                value={foodItem}
-                onChange={(e) => this.onInputChange(e.target.value)}
-                className="form-control add-item-input"
-                placeholder="Add food item"
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
-              />
-              <div className="input-group-append">
-                <button
-                  className="btn btn-outline-secondary bg-success text-white"
-                  onClick={() =>
-                    this.addItem(tabMap[selectedTab].toLowerCase(), foodItem)
-                  }
-                  type="button"
-                  id="button-addon2"
-                >
-                  +
-                </button>
-              </div>
-            </div>
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              defaultValue={colorOptions[0]}
+              isSearchable
+              name="color"
+              options={colorOptions}
+            />
             {selectedTab === 0 && (
               <Fragment>
                 <div className="foodlist">
