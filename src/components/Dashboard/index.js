@@ -85,7 +85,7 @@ const Dashboard = () => {
         <span className="card-span mt-2">
           <div className="card card-div">
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699244/food-waste-mgmt/hungry-children.jpg"
+              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832162/food-waste-mgmt/menu-image.jpg"
               className="card-img-top img-size"
               style={{ borderRadius: '20px 20px 0px 0px' }}
               alt="..."
@@ -98,7 +98,7 @@ const Dashboard = () => {
           </div>
           <div className="card mt-5 card-div second-search-div">
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699244/food-waste-mgmt/hungry-children.jpg"
+              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832248/food-waste-mgmt/donate-food.jpg"
               className="card-img-top img-size"
               style={{ borderRadius: '20px 20px 0px 0px' }}
               alt="..."
