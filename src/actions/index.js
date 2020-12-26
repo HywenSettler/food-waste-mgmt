@@ -6,3 +6,9 @@ export const logIn = (authData) => {
     payload: authData
   };
 };
+
+export const logOut = () => {
+  return {
+    type: LOG_OUT
+  };
+};

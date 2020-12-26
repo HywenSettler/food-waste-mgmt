@@ -14,6 +14,7 @@ const CITY = 'CITY';
 const STATE = 'STATE';
 const PINCODE = 'PINCODE';
 const ADDRESS = 'ADDRESS';
+const PHONE_NUMBER = 'PHONE_NUMBER';
 
 function registerFormReducer(state, action) {
   switch (action.type) {
@@ -40,6 +41,9 @@ function registerFormReducer(state, action) {
 
     case ADDRESS:
       return { ...state, address: action.payload };
+
+    case PHONE_NUMBER:
+      return { ...state, phoneNumber: action.payload };
 
     default: {
       // helps us avoid typos!
@@ -93,6 +97,7 @@ const RegisterForm = (props) => {
     orgName: '',
     isNGO: null,
     address: '',
+    phoneNumber: '',
     city: '',
     state: '',
     pincode: ''
@@ -134,6 +139,7 @@ const RegisterForm = (props) => {
     orgName,
     isNGO,
     address,
+    phoneNumber,
     city,
     state,
     pincode
@@ -224,13 +230,18 @@ const RegisterForm = (props) => {
                     </select>
                   </div>
                   <div className="form-group col-md-6">
-                    <label htmlFor="exampleFormControlSelect1">
-                      Phone Number
-                    </label>
+                    <label htmlFor="inputPNumber">Phone Number</label>
                     <input
                       type="text"
                       className="form-control"
                       id="inputPNumber"
+                      value={phoneNumber}
+                      onChange={(e) =>
+                        dispatch({
+                          type: PHONE_NUMBER,
+                          payload: e.target.value
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -276,8 +287,8 @@ const RegisterForm = (props) => {
                     />
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Sign in
+                <button type="submit" className="btn btn-primary btn-lg mt-4">
+                  Register
                 </button>
               </form>
             </div>

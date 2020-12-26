@@ -16,7 +16,7 @@ const Dashboard = () => {
     setChart(!chart);
   };
 
-  const [data, setData] = useState('');
+  const [userDetails, setUserDetails] = useState({});
 
   useEffect(() => {
     let accessToken = sessionStorage.getItem('accessToken');
@@ -25,9 +25,17 @@ const Dashboard = () => {
     foodMgmtApi
       .get('/user', { headers: { Authorization: `Bearer ${accessToken}` } })
       .then((res) => {
-        setData(res.data.email);
+        setUserDetails(res.data);
       });
   }, []);
+
+  const {
+    email = '',
+    address = '',
+    phoneNumber = '',
+    city = '',
+    pincode = ''
+  } = userDetails;
 
   return (
     <div>
@@ -119,13 +127,13 @@ const Dashboard = () => {
             />
             <div className="card-body">
               <h5 className="card-title" style={{ color: 'blue' }}>
-                Name: {data}
+                Email ID: {email}
               </h5>
               <div className="card-text">
-                <p>Address:</p>
-                <p>City:</p>
-                <p>PIN Code:</p>
-                <p>Phone Number: </p>
+                <p>Address: {address}</p>
+                <p>City: {city}</p>
+                <p>PIN Code: {pincode}</p>
+                <p>Phone Number: {phoneNumber}</p>
               </div>
             </div>
           </div>

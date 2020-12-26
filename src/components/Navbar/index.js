@@ -1,17 +1,37 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 
+import foodMgmtApi from '../../api';
+import { logOut } from '../../actions';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
 
 import './Navbar.css';
 
-const Navbar = ({ isLoggedIn, orgName }) => {
+const Navbar = ({ isLoggedIn, orgName, ...props }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const history = useHistory();
+
+  const initiateLogout = () => {
+    let accessToken = sessionStorage.getItem('accessToken');
+    let refreshToken = sessionStorage.getItem('refreshToken');
+
+    console.log({ accessToken });
+
+    foodMgmtApi
+      .post('/logout', null, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      })
+      .then((res) => {
+        props.logOut();
+        history.push('/');
+      });
+  };
 
   return (
     <>
@@ -52,7 +72,9 @@ const Navbar = ({ isLoggedIn, orgName }) => {
             <li className="nav-item">
               <Nav.Link
                 className="nav-link text-white anchor-item"
-                onClick={() => setIsRegisterOpen(true)}
+                onClick={() =>
+                  !isLoggedIn ? setIsRegisterOpen(true) : initiateLogout()
+                }
               >
                 {isLoggedIn ? 'Log Out' : 'Register'}
               </Nav.Link>
@@ -94,4 +116,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logOut })(Navbar);
