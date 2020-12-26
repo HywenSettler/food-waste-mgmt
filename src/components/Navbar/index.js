@@ -28,6 +28,7 @@ const Navbar = ({ isLoggedIn, orgName, ...props }) => {
         headers: { Authorization: `Bearer ${accessToken}` }
       })
       .then((res) => {
+        sessionStorage.clear();
         props.logOut();
         history.push('/');
       });
