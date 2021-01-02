@@ -92,13 +92,16 @@ const MessCreateMenu = () => {
                     </span>
                     <span className="food-name">{item.name}</span>
                     <span>
-                      <button
-                        type="button"
+                      <i
+                        className="bi bi-trash-fill"
+                        style={{
+                          fontSize: '1.5rem',
+                          color: 'red',
+                          cursor: 'pointer',
+                          marginRight: '1.1rem'
+                        }}
                         onClick={() => removeItem(setBreakfast, idx)}
-                        className="addbutton bg-info"
-                      >
-                        –
-                      </button>
+                      ></i>
                     </span>
                   </div>
                 ))}
