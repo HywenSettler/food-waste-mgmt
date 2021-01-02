@@ -215,10 +215,10 @@ const HomePage = () => {
           <div className="footerheading">Social</div>
           <div>
             <span className="social-icons">
-              <i className="fab fa-facebook"></i>
+              <i className="bi bi-facebook"></i>
             </span>
             <span className="social-icons">
-              <i className="fab fa-instagram"></i>
+              <i className="bi bi-instagram"></i>
             </span>
           </div>
         </div>

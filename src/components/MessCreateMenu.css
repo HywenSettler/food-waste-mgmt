@@ -161,3 +161,10 @@
 .test {
   background-color: yellow;
 }
+
+.delete-food {
+  font-size: 1.5rem;
+  color: red;
+  cursor: pointer;
+  margin-right: 1.1rem;
+}

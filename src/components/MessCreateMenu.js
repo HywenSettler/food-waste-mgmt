@@ -52,7 +52,7 @@ const MessCreateMenu = () => {
       case 1:
         setLunch([...lunch, selectedOption.value]);
         return;
-      case 3:
+      case 2:
         setDinner([...dinner, selectedOption.value]);
         return;
       default:
@@ -93,13 +93,7 @@ const MessCreateMenu = () => {
                     <span className="food-name">{item.name}</span>
                     <span>
                       <i
-                        className="bi bi-trash-fill"
-                        style={{
-                          fontSize: '1.5rem',
-                          color: 'red',
-                          cursor: 'pointer',
-                          marginRight: '1.1rem'
-                        }}
+                        className="bi bi-trash-fill delete-food"
                         onClick={() => removeItem(setBreakfast, idx)}
                       ></i>
                     </span>
@@ -125,13 +119,10 @@ const MessCreateMenu = () => {
                     </span>
                     <span className="food-name">{item.name}</span>
                     <span>
-                      <button
-                        type="button"
+                      <i
+                        className="bi bi-trash-fill delete-food"
                         onClick={() => removeItem(setLunch, idx)}
-                        className="addbutton bg-info"
-                      >
-                        –
-                      </button>
+                      ></i>
                     </span>
                   </div>
                 ))}
@@ -162,13 +153,10 @@ const MessCreateMenu = () => {
                     </span>
                     <span className="food-name">{item.name}</span>
                     <span>
-                      <button
-                        type="button"
+                      <i
+                        className="bi bi-trash-fill delete-food"
                         onClick={() => removeItem(setDinner, idx)}
-                        className="addbutton bg-info"
-                      >
-                        –
-                      </button>
+                      ></i>
                     </span>
                   </div>
                 ))}
