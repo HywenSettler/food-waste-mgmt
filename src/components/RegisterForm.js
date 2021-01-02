@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import foodMgmtApi from '../api';
 import { logIn } from '../actions';
 
+import './RegisterForm.css';
+
 const NOT_SELECTED = 'NOT_SELECTED';
 const ORG_NAME = 'ORG_NAME';
 const EMAIL = 'EMAIL';
@@ -246,7 +248,7 @@ const RegisterForm = (props) => {
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-4">
                     <label htmlFor="inputCity">City</label>
                     <input
                       type="text"
@@ -274,7 +276,7 @@ const RegisterForm = (props) => {
                       ))}
                     </select>
                   </div>
-                  <div className="form-group col-md-2">
+                  <div className="form-group col-md-4">
                     <label htmlFor="inputPin">PIN Code</label>
                     <input
                       type="text"
@@ -285,6 +287,40 @@ const RegisterForm = (props) => {
                         dispatch({ type: PINCODE, payload: e.target.value })
                       }
                     />
+                  </div>
+                </div>
+                <div className="form-row image-class">
+                  <div className="form-group col-md-6">
+                    <label htmlFor="exampleFormControlSelect1">
+                      Upload photograph of your organization
+                    </label>
+                  </div>
+                  <div className="form-group col-md-6">
+                    <button>Click here to upload</button>
+                    {/* <label htmlFor="inputPNumber">Phone Number</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputPNumber"
+                      value={phoneNumber}
+                      onChange={(e) =>
+                        dispatch({
+                          type: PHONE_NUMBER,
+                          payload: e.target.value
+                        })
+                      }
+                    /> */}
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div
+                    className="form-group col-md-6"
+                    style={{ margin: 'auto' }}
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png"
+                      className="image-dimension"
+                    ></img>
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary btn-lg mt-4">
