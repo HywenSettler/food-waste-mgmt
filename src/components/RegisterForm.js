@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-import foodMgmtApi from '../api';
 import { logIn } from '../actions';
 
 import './RegisterForm.css';
@@ -153,10 +153,10 @@ const RegisterForm = (props) => {
       profileImageUrl = isNGO ? NGO_PROFILE_IMG_URL : MESS_PROFILE_IMG_URL;
     }
 
-    foodMgmtApi
+    axios
       .post('/register', { ...formState, profileImageUrl })
       .then(() => {
-        return foodMgmtApi.post('/login', {
+        return axios.post('/login', {
           email,
           password
         });
@@ -170,6 +170,15 @@ const RegisterForm = (props) => {
 
         sessionStorage.setItem('accessToken', access_token);
         sessionStorage.setItem('refreshToken', refresh_token);
+
+        axios.interceptors.request.use((request) => {
+          request.headers['Authorization'] = `Bearer ${sessionStorage.getItem(
+            'accessToken'
+          )}`;
+
+          return request;
+        });
+
         props.logIn({ isNGO, orgName });
 
         history.push('/dashboard');

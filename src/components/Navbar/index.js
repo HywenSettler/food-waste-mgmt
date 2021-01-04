@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
+import axios from 'axios';
 
-import foodMgmtApi from '../../api';
 import { logOut } from '../../actions';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
@@ -18,20 +18,11 @@ const Navbar = ({ isLoggedIn, orgName, ...props }) => {
   const history = useHistory();
 
   const initiateLogout = () => {
-    let accessToken = sessionStorage.getItem('accessToken');
-    let refreshToken = sessionStorage.getItem('refreshToken');
-
-    console.log({ accessToken });
-
-    foodMgmtApi
-      .post('/logout', null, {
-        headers: { Authorization: `Bearer ${accessToken}` }
-      })
-      .then((res) => {
-        sessionStorage.clear();
-        props.logOut();
-        history.push('/');
-      });
+    axios.post('/logout').then((res) => {
+      sessionStorage.clear();
+      props.logOut();
+      history.push('/');
+    });
   };
 
   return (

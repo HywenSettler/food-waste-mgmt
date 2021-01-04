@@ -1,8 +1,8 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
-import foodMgmtApi from '../../api';
 import BarChart from '../BarChart';
 import PieChart from '../PieChart';
 import Navbar from '../Navbar';
@@ -19,14 +19,9 @@ const Dashboard = () => {
   const [userDetails, setUserDetails] = useState({});
 
   useEffect(() => {
-    let accessToken = sessionStorage.getItem('accessToken');
-    let refreshToken = sessionStorage.getItem('refreshToken');
-
-    foodMgmtApi
-      .get('/user', { headers: { Authorization: `Bearer ${accessToken}` } })
-      .then((res) => {
-        setUserDetails(res.data);
-      });
+    axios.get('/user').then((res) => {
+      setUserDetails(res.data);
+    });
   }, []);
 
   const {
