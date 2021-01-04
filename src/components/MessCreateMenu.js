@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 
 import foodMgmtApi from '../api';
@@ -14,16 +15,23 @@ const tabMap = {
   2: 'Dinner'
 };
 
+const foodSet = new Set();
+
 const MessCreateMenu = () => {
   const [breakfast, setBreakfast] = useState([]);
   const [lunch, setLunch] = useState([]);
   const [dinner, setDinner] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
 
+  const history = useHistory();
+
   const removeItem = (setterFunction, idx) => {
-    setterFunction((foodArray) =>
-      foodArray.filter((_, index) => index !== idx)
-    );
+    setterFunction((foodArray) => {
+      const foodId = foodArray[idx].id;
+      foodSet.delete(foodId);
+
+      return foodArray.filter((_, index) => index !== idx);
+    });
   };
 
   const loadFoodItems = (inputValue, callback) => {
@@ -45,25 +53,46 @@ const MessCreateMenu = () => {
   };
 
   const handleChange = (selectedOption) => {
-    switch (selectedTab) {
-      case 0:
-        setBreakfast([...breakfast, selectedOption.value]);
-        return;
-      case 1:
-        setLunch([...lunch, selectedOption.value]);
-        return;
-      case 2:
-        setDinner([...dinner, selectedOption.value]);
-        return;
-      default:
-        return;
+    const foodId = selectedOption.value.id;
+
+    if (!foodSet.has(foodId)) {
+      switch (selectedTab) {
+        case 0:
+          setBreakfast([...breakfast, selectedOption.value]);
+          break;
+        case 1:
+          setLunch([...lunch, selectedOption.value]);
+          break;
+        case 2:
+          setDinner([...dinner, selectedOption.value]);
+          break;
+        default:
+          break;
+      }
+
+      foodSet.add(foodId);
     }
+  };
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    const foodIds = [...breakfast, ...lunch, ...dinner].map((item) => item.id);
+
+    let accessToken = sessionStorage.getItem('accessToken');
+
+    foodMgmtApi
+      .post('/menu', foodIds, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      })
+      .then((res) => {
+        history.push('/menu');
+      });
   };
 
   return (
     <div className="messcmbody">
       <Navbar />
-      <form className="msform">
+      <form className="msform" onSubmit={onFormSubmit}>
         <ul className="progressbar pl-0">
           {food.map((item, idx) => (
             <li key={idx} className={idx <= selectedTab ? 'active' : ''}>

@@ -34,7 +34,8 @@ const Dashboard = () => {
     address = '',
     phoneNumber = '',
     city = '',
-    pincode = ''
+    pincode = '',
+    profileImageUrl = 'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png'
   } = userDetails;
 
   return (
@@ -121,7 +122,7 @@ const Dashboard = () => {
         <span className="mt-3 card-span" style={{ height: 'inherit' }}>
           <div className="card side-span-card">
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608633900/food-waste-mgmt/mess.jpg"
+              src={profileImageUrl}
               className="card-img-top card-img-size px-2 py-3 rounded-sm"
               alt="..."
             />

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -17,6 +17,14 @@ const STATE = 'STATE';
 const PINCODE = 'PINCODE';
 const ADDRESS = 'ADDRESS';
 const PHONE_NUMBER = 'PHONE_NUMBER';
+const PROFILE_IMG_URL = 'PROFILE_IMG_URL';
+
+const DEFAULT_PROFILE_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png';
+const MESS_PROFILE_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608633900/food-waste-mgmt/mess.jpg';
+const NGO_PROFILE_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608633900/food-waste-mgmt/ngo.jpg';
 
 function registerFormReducer(state, action) {
   switch (action.type) {
@@ -46,6 +54,9 @@ function registerFormReducer(state, action) {
 
     case PHONE_NUMBER:
       return { ...state, phoneNumber: action.payload };
+
+    case PROFILE_IMG_URL:
+      return { ...state, profileImageUrl: action.payload };
 
     default: {
       // helps us avoid typos!
@@ -102,19 +113,52 @@ const RegisterForm = (props) => {
     phoneNumber: '',
     city: '',
     state: '',
-    pincode: ''
+    pincode: '',
+    profileImageUrl: ''
   });
+
+  const [uploadWidget, setUploadWidget] = useState(null);
 
   const history = useHistory();
 
+  useEffect(() => {
+    setUploadWidget(
+      window.cloudinary.createUploadWidget(
+        {
+          cloudName: 'dc2o7coc1',
+          uploadPreset: 'ow32ylc6'
+        },
+        async (err, result) => {
+          if (result.event === 'success') {
+            console.log(result.info.secure_url);
+            dispatch({
+              type: PROFILE_IMG_URL,
+              payload: result.info.secure_url
+            });
+          }
+        }
+      )
+    );
+  }, []);
+
+  const showWidget = () => {
+    uploadWidget.open();
+  };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
+
+    let { profileImageUrl, isNGO, email, password } = formState;
+    if (profileImageUrl.length === 0) {
+      profileImageUrl = isNGO ? NGO_PROFILE_IMG_URL : MESS_PROFILE_IMG_URL;
+    }
+
     foodMgmtApi
-      .post('/register', formState)
+      .post('/register', { ...formState, profileImageUrl })
       .then(() => {
         return foodMgmtApi.post('/login', {
-          email: formState.email,
-          password: formState.password
+          email,
+          password
         });
       })
       .then((res) => {
@@ -144,7 +188,8 @@ const RegisterForm = (props) => {
     phoneNumber,
     city,
     state,
-    pincode
+    pincode,
+    profileImageUrl
   } = formState;
 
   return (
@@ -153,10 +198,7 @@ const RegisterForm = (props) => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="mt-3">
-              <form
-                className="border border-success rounded p-5"
-                onSubmit={onFormSubmit}
-              >
+              <div className="border border-success rounded p-5">
                 <div className="form-group">
                   <label htmlFor="inputName">Organization Name</label>
                   <input
@@ -296,7 +338,7 @@ const RegisterForm = (props) => {
                     </label>
                   </div>
                   <div className="form-group col-md-6">
-                    <button>Click here to upload</button>
+                    <button onClick={showWidget}>Click here to upload</button>
                     {/* <label htmlFor="inputPNumber">Phone Number</label>
                     <input
                       type="text"
@@ -318,15 +360,22 @@ const RegisterForm = (props) => {
                     style={{ margin: 'auto' }}
                   >
                     <img
-                      src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png"
+                      src={
+                        profileImageUrl.length > 0
+                          ? profileImageUrl
+                          : DEFAULT_PROFILE_IMG_URL
+                      }
                       className="image-dimension"
                     ></img>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg mt-4">
+                <button
+                  onClick={onFormSubmit}
+                  className="btn btn-primary btn-lg mt-4"
+                >
                   Register
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>

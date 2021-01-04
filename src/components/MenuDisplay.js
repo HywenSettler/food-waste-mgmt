@@ -1,8 +1,37 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 
+import foodMgmtApi from '../api';
 import Navbar from './Navbar';
 
 const MenuDisplay = () => {
+  const [menu, setMenu] = useState({
+    breakfast: [],
+    lunch: [],
+    dinner: []
+  });
+
+  useEffect(() => {
+    let accessToken = sessionStorage.getItem('accessToken');
+
+    foodMgmtApi
+      .get('/menu', {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      })
+      .then((res) => {
+        let mappedData = {
+          breakfast: [],
+          lunch: [],
+          dinner: []
+        };
+
+        for (let item of res.data) {
+          mappedData[item.type].push(item);
+        }
+
+        setMenu(mappedData);
+      });
+  }, []);
+
   return (
     <Fragment>
       <Navbar />
@@ -22,11 +51,11 @@ const MenuDisplay = () => {
             <div class="card-body">
               <h5 class="card-title"> Breakfast Menu </h5>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Bread</li>
-                <li class="list-group-item">Milk</li>
-                <li class="list-group-item">Muesli</li>
-                <li class="list-group-item">Cutlets</li>
-                <li class="list-group-item">Samosa</li>
+                {menu.breakfast.map((item) => (
+                  <li class="list-group-item" key={item.id}>
+                    {item.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -41,11 +70,11 @@ const MenuDisplay = () => {
             <div class="card-body">
               <h5 class="card-title"> Lunch Menu </h5>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Rajma</li>
-                <li class="list-group-item">Chapati</li>
-                <li class="list-group-item">Rice</li>
-                <li class="list-group-item">Salad</li>
-                <li class="list-group-item">Raita/Buttermilk</li>
+                {menu.lunch.map((item) => (
+                  <li class="list-group-item" key={item.id}>
+                    {item.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -60,11 +89,11 @@ const MenuDisplay = () => {
             <div class="card-body">
               <h5 class="card-title"> Dinner Menu </h5>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Naan</li>
-                <li class="list-group-item">Makhni Daal</li>
-                <li class="list-group-item">Shahi Paneer</li>
-                <li class="list-group-item">Rice</li>
-                <li class="list-group-item">Raita</li>
+                {menu.dinner.map((item) => (
+                  <li class="list-group-item" key={item.id}>
+                    {item.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
