@@ -111,7 +111,12 @@ const MessCreateMenu = () => {
                 {breakfast.map((item, idx) => (
                   <div key={item.id} className="food-item">
                     <span className="food-image">
-                      <img src={item.image_url} height="50px" width="60px" />
+                      <img
+                        src={item.image_url}
+                        height="50px"
+                        width="60px"
+                        alt=""
+                      />
                     </span>
                     <span className="food-name">{item.name}</span>
                     <span>
@@ -138,7 +143,12 @@ const MessCreateMenu = () => {
                 {lunch.map((item, idx) => (
                   <div key={item.id} className="food-item">
                     <span className="food-image">
-                      <img src={item.image_url} height="50px" width="60px" />
+                      <img
+                        src={item.image_url}
+                        height="50px"
+                        width="60px"
+                        alt=""
+                      />
                     </span>
                     <span className="food-name">{item.name}</span>
                     <span>
@@ -172,7 +182,12 @@ const MessCreateMenu = () => {
                 {dinner.map((item, idx) => (
                   <div key={item.id} className="food-item">
                     <span className="food-image">
-                      <img src={item.image_url} height="50px" width="60px" />
+                      <img
+                        src={item.image_url}
+                        height="50px"
+                        width="60px"
+                        alt=""
+                      />
                     </span>
                     <span className="food-name">{item.name}</span>
                     <span>

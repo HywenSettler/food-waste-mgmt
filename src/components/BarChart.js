@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 const BarChart = ({ fooddata }) => {
   useEffect(() => {
     drawChart();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const drawChart = () => {
     let xposition = d3

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './History.css';
 
@@ -18,6 +19,7 @@ const History = () => {
                   <img
                     src="assets/images/children-sitting.jpg"
                     style={{ height: '100px', width: '100px' }}
+                    alt=""
                   />
                 </div>
                 <div className="col-4 d-flex flex-column justify-content-center column-style-div">
@@ -30,9 +32,9 @@ const History = () => {
             </div>
           </div>
           <div className="card-footer text-muted d-flex flex-row-reverse">
-            <a href="#" className="btn btn-primary">
+            <Link to="/dashboard" className="btn btn-primary">
               Go to profile
-            </a>
+            </Link>
           </div>
         </div>
       </div>

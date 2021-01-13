@@ -367,6 +367,7 @@ const RegisterForm = (props) => {
                           : DEFAULT_PROFILE_IMG_URL
                       }
                       className="image-dimension"
+                      alt=""
                     ></img>
                   </div>
                 </div>

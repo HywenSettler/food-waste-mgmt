@@ -7,70 +7,55 @@ import Navbar from './Navbar';
 
 const MessFoodDonate = () => {
   return (
-    <div class="messcmbody">
+    <div className="messcmbody">
       <Navbar />
-      <form class="msform">
-        <ul class="progressbar pl-0">
-          <li class="active">Breakfast</li>
+      <form className="msform">
+        <ul className="progressbar pl-0">
+          <li className="active">Breakfast</li>
           <li>Lunch</li>
           <li>Dinner</li>
         </ul>
         <fieldset>
-          <h2 class="fs-title">Create your menu</h2>
-          <h3 class="fs-subtitle">Breakfast</h3>
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control add-item-input"
-              placeholder="Add food item"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-            />
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-secondary bg-success text-white"
-                type="button"
-                id="button-addon2"
-              >
-                +
-              </button>
-            </div>
+          <h2 className="fs-title">Donate food</h2>
+          <h3 className="fs-subtitle">Breakfast</h3>
+          <div className="text-center">
+            Quantities must be entered per person basis.
           </div>
-          <div class="donate-foodlist">
-            <div class="donate-food-item">
-              <span class="donate-food-name">Cutlets</span>
+          <div className="donate-foodlist">
+            <div className="donate-food-item">
+              <span className="donate-food-name">Cutlets</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Bread slices</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Bread slices</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
           </div>
           <input
             type="button"
             name="next"
-            class="next action-button"
+            className="next action-button"
             value="Next"
           />
         </fieldset>
         <fieldset>
-          <h2 class="fs-title">Create your menu</h2>
-          <h3 class="fs-subtitle">Lunch</h3>
-          <div class="input-group">
+          <h2 className="fs-title">Create your menu</h2>
+          <h3 className="fs-subtitle">Lunch</h3>
+          <div className="input-group">
             <input
               type="text"
-              class="form-control add-item-input"
+              className="form-control add-item-input"
               placeholder="Add food item"
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
             />
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button
-                class="btn btn-outline-secondary bg-success text-white"
+                className="btn btn-outline-secondary bg-success text-white"
                 type="button"
                 id="button-addon2"
               >
@@ -78,59 +63,59 @@ const MessFoodDonate = () => {
               </button>
             </div>
           </div>
-          <div class="donate-foodlist">
-            <div class="donate-food-item">
-              <span class="donate-food-name">Pheromosa</span>
+          <div className="donate-foodlist">
+            <div className="donate-food-item">
+              <span className="donate-food-name">Pheromosa</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Kartana</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Kartana</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Celesteela</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Celesteela</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Guzzlord</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Guzzlord</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
           </div>
           <input
             type="button"
             name="previous"
-            class="previous action-button"
+            className="previous action-button"
             value="Previous"
           />
           <input
             type="button"
             name="next"
-            class="next action-button"
+            className="next action-button"
             value="Next"
           />
         </fieldset>
         <fieldset>
-          <h2 class="fs-title">Create your menu</h2>
-          <h3 class="fs-subtitle">Dinner</h3>
-          <div class="input-group">
+          <h2 className="fs-title">Create your menu</h2>
+          <h3 className="fs-subtitle">Dinner</h3>
+          <div className="input-group">
             <input
               type="text"
-              class="form-control add-item-input"
+              className="form-control add-item-input"
               placeholder="Add food item"
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
             />
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button
-                class="btn btn-outline-secondary bg-success text-white"
+                className="btn btn-outline-secondary bg-success text-white"
                 type="button"
                 id="button-addon2"
               >
@@ -138,42 +123,42 @@ const MessFoodDonate = () => {
               </button>
             </div>
           </div>
-          <div class="donate-foodlist">
-            <div class="donate-food-item">
-              <span class="donate-food-name">Pheromosa</span>
+          <div className="donate-foodlist">
+            <div className="donate-food-item">
+              <span className="donate-food-name">Pheromosa</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Kartana</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Kartana</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Celesteela</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Celesteela</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
-            <div class="donate-food-item">
-              <span class="donate-food-name">Guzzlord</span>
+            <div className="donate-food-item">
+              <span className="donate-food-name">Guzzlord</span>
               <span>
-                <input type="number" class="item-number" min="0"></input>
+                <input type="number" className="item-number" min="0"></input>
               </span>
             </div>
           </div>
           <input
             type="button"
             name="previous"
-            class="previous action-button"
+            className="previous action-button"
             value="Previous"
           />
           <input
             type="submit"
             name="submit"
-            class="submit action-button"
+            className="submit action-button"
             value="Donate"
           />
         </fieldset>

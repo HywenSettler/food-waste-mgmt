@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 const PieChart = ({ fooddata }) => {
   useEffect(() => {
     drawChart();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const drawChart = () => {
     let pie = d3.pie().value((d) => d.quantity);
