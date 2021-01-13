@@ -173,13 +173,7 @@ const RegisterForm = (props) => {
         window.utils.setAccessToken(access_token);
         window.utils.setRefreshToken(refresh_token);
 
-        axios.interceptors.request.use((request) => {
-          request.headers[
-            'Authorization'
-          ] = `Bearer ${window.utils.getAccessToken()}`;
-
-          return request;
-        });
+        window.utils.createAuthInterceptor(axios);
 
         props.logIn({ isNGO, orgName });
 

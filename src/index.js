@@ -16,6 +16,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 window.utils = {
+  createAuthInterceptor: function (axiosInstance) {
+    axiosInstance.interceptors.request.use((request) => {
+      request.headers['Authorization'] = `Bearer ${this.getAccessToken()}`;
+
+      return request;
+    });
+  },
   shouldRememberUser: function () {
     return JSON.parse(localStorage.getItem('remember_user'));
   },

@@ -14,13 +14,7 @@ const HomePage = (props) => {
 
   useEffect(() => {
     if (window.utils.shouldRememberUser()) {
-      axios.interceptors.request.use((request) => {
-        request.headers[
-          'Authorization'
-        ] = `Bearer ${window.utils.getAccessToken()}`;
-
-        return request;
-      });
+      window.utils.createAuthInterceptor(axios);
 
       axios
         .get('/user')
