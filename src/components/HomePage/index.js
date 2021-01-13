@@ -1,11 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import './Homepage.css';
 
 import Navbar from '../Navbar';
+import { logIn } from '../../actions';
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (window.utils.shouldRememberUser()) {
+      axios.interceptors.request.use((request) => {
+        request.headers[
+          'Authorization'
+        ] = `Bearer ${window.utils.getAccessToken()}`;
+
+        return request;
+      });
+
+      axios
+        .get('/user')
+        .then((res) => {
+          const { orgName, isNGO } = res.data;
+
+          props.logIn({ isNGO, orgName });
+
+          history.push('/dashboard');
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -227,4 +256,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default connect(null, { logIn })(HomePage);

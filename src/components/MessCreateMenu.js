@@ -1,8 +1,8 @@
 import React, { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import AsyncSelect from 'react-select/async';
 
-import foodMgmtApi from '../api';
 import Navbar from './Navbar';
 
 import './MessCreateMenu.css';
@@ -35,7 +35,7 @@ const MessCreateMenu = () => {
   };
 
   const loadFoodItems = (inputValue, callback) => {
-    foodMgmtApi
+    axios
       .get('/items', {
         params: {
           type: tabMap[selectedTab].toLowerCase(),
@@ -78,15 +78,9 @@ const MessCreateMenu = () => {
     e.preventDefault();
     const foodIds = [...breakfast, ...lunch, ...dinner].map((item) => item.id);
 
-    let accessToken = sessionStorage.getItem('accessToken');
-
-    foodMgmtApi
-      .post('/menu', foodIds, {
-        headers: { Authorization: `Bearer ${accessToken}` }
-      })
-      .then((res) => {
-        history.push('/menu');
-      });
+    axios.post('/menu', foodIds).then((res) => {
+      history.push('/menu');
+    });
   };
 
   return (

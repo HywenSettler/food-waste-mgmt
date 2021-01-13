@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-import foodMgmtApi from '../api';
 import { logIn } from '../actions';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberUser, setRememberUser] = useState(false);
 
   const history = useHistory();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    foodMgmtApi
+
+    axios
       .post('/login', { email, password })
       .then((res) => {
         const {
@@ -22,8 +24,21 @@ const LoginForm = (props) => {
           orgName
         } = res.data;
 
-        sessionStorage.setItem('accessToken', access_token);
-        sessionStorage.setItem('refreshToken', refresh_token);
+        // console.log(window.utils);
+
+        window.utils.rememberUser(rememberUser);
+
+        window.utils.setAccessToken(access_token);
+        window.utils.setRefreshToken(refresh_token);
+
+        axios.interceptors.request.use((request) => {
+          request.headers[
+            'Authorization'
+          ] = `Bearer ${window.utils.getAccessToken()}`;
+
+          return request;
+        });
+
         props.logIn({ isNGO, orgName });
 
         history.push('/dashboard');
@@ -63,6 +78,7 @@ const LoginForm = (props) => {
             type="checkbox"
             className="custom-control-input"
             id="customSwitch1"
+            onChange={() => setRememberUser(!rememberUser)}
           />
           <label className="custom-control-label" htmlFor="customSwitch1">
             Remember me

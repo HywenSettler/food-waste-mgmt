@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-import foodMgmtApi from '../api';
 import { logIn } from '../actions';
 
 import './RegisterForm.css';
@@ -153,10 +153,10 @@ const RegisterForm = (props) => {
       profileImageUrl = isNGO ? NGO_PROFILE_IMG_URL : MESS_PROFILE_IMG_URL;
     }
 
-    foodMgmtApi
+    axios
       .post('/register', { ...formState, profileImageUrl })
       .then(() => {
-        return foodMgmtApi.post('/login', {
+        return axios.post('/login', {
           email,
           password
         });
@@ -168,8 +168,19 @@ const RegisterForm = (props) => {
           isNGO
         } = res.data;
 
-        sessionStorage.setItem('accessToken', access_token);
-        sessionStorage.setItem('refreshToken', refresh_token);
+        window.utils.rememberUser(false);
+
+        window.utils.setAccessToken(access_token);
+        window.utils.setRefreshToken(refresh_token);
+
+        axios.interceptors.request.use((request) => {
+          request.headers[
+            'Authorization'
+          ] = `Bearer ${window.utils.getAccessToken()}`;
+
+          return request;
+        });
+
         props.logIn({ isNGO, orgName });
 
         history.push('/dashboard');
@@ -276,7 +287,9 @@ const RegisterForm = (props) => {
                   <div className="form-group col-md-6">
                     <label htmlFor="inputPNumber">Phone Number</label>
                     <input
-                      type="text"
+                      type="tel"
+                      pattern="[6-9]{1}[0-9]{9}"
+                      maxLength="10"
                       className="form-control"
                       id="inputPNumber"
                       value={phoneNumber}
@@ -322,6 +335,7 @@ const RegisterForm = (props) => {
                     <label htmlFor="inputPin">PIN Code</label>
                     <input
                       type="text"
+                      maxLength="6"
                       className="form-control"
                       id="inputPin"
                       value={pincode}
@@ -339,19 +353,6 @@ const RegisterForm = (props) => {
                   </div>
                   <div className="form-group col-md-6">
                     <button onClick={showWidget}>Click here to upload</button>
-                    {/* <label htmlFor="inputPNumber">Phone Number</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputPNumber"
-                      value={phoneNumber}
-                      onChange={(e) =>
-                        dispatch({
-                          type: PHONE_NUMBER,
-                          payload: e.target.value
-                        })
-                      }
-                    /> */}
                   </div>
                 </div>
                 <div className="form-row">

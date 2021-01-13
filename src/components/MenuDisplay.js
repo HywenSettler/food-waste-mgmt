@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import axios from 'axios';
 
-import foodMgmtApi from '../api';
 import Navbar from './Navbar';
 
 const MenuDisplay = () => {
@@ -11,25 +11,19 @@ const MenuDisplay = () => {
   });
 
   useEffect(() => {
-    let accessToken = sessionStorage.getItem('accessToken');
+    axios.get('/menu').then((res) => {
+      let mappedData = {
+        breakfast: [],
+        lunch: [],
+        dinner: []
+      };
 
-    foodMgmtApi
-      .get('/menu', {
-        headers: { Authorization: `Bearer ${accessToken}` }
-      })
-      .then((res) => {
-        let mappedData = {
-          breakfast: [],
-          lunch: [],
-          dinner: []
-        };
+      for (let item of res.data) {
+        mappedData[item.type].push(item);
+      }
 
-        for (let item of res.data) {
-          mappedData[item.type].push(item);
-        }
-
-        setMenu(mappedData);
-      });
+      setMenu(mappedData);
+    });
   }, []);
 
   return (
