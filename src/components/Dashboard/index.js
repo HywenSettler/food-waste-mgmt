@@ -6,6 +6,7 @@ import foodMgmtApi from '../../api';
 import BarChart from '../BarChart';
 import PieChart from '../PieChart';
 import Navbar from '../Navbar';
+import { data } from '../../FoodData';
 
 import './Dashboard.css';
 
@@ -68,7 +69,7 @@ const Dashboard = () => {
           </div>
           {chart && (
             <Fragment>
-              <BarChart />
+              <BarChart fooddata={data} />
               <button
                 type="button"
                 class="btn btn-primary"
@@ -80,7 +81,7 @@ const Dashboard = () => {
           )}
           {!chart && (
             <Fragment>
-              <PieChart />
+              <PieChart fooddata={data} />
               <button
                 type="button"
                 class="btn btn-primary"
@@ -128,10 +129,12 @@ const Dashboard = () => {
             />
             <div className="card-body">
               <h5 className="card-title" style={{ color: 'blue' }}>
-                Email ID: {email}
+                Email: {email}
               </h5>
               <div className="card-text">
-                <p>Address: {address}</p>
+                <p>
+                  <b>Address</b>: {address}
+                </p>
                 <p>City: {city}</p>
                 <p>PIN Code: {pincode}</p>
                 <p>Phone Number: {phoneNumber}</p>

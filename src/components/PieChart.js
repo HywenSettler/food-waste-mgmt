@@ -1,25 +1,18 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 
-const PieChart = () => {
+const PieChart = ({ fooddata }) => {
   useEffect(() => {
     drawChart();
   }, []);
 
   const drawChart = () => {
-    const data = [
-      { name: 'roti', quantity: 20 },
-      { name: 'rajma', quantity: 30 },
-      { name: 'paneer', quantity: 10 },
-      { name: 'pav bhaji', quantity: 3 }
-    ];
-
     let pie = d3.pie().value((d) => d.quantity);
 
     let cScale = d3
       .scaleOrdinal()
       .range(d3.schemeCategory10)
-      .domain(data.map((d) => d.name));
+      .domain(fooddata.map((d) => d.name));
     let arc = d3
       .arc()
       .outerRadius(190)
@@ -31,7 +24,7 @@ const PieChart = () => {
 
     drawSpace
       .selectAll('path')
-      .data(pie(data))
+      .data(pie(fooddata))
       .enter()
       .append('g')
       .append('path')

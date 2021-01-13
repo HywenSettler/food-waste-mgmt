@@ -1,40 +1,33 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 
-const BarChart = () => {
+const BarChart = ({ fooddata }) => {
   useEffect(() => {
     drawChart();
   }, []);
 
   const drawChart = () => {
-    const data = [
-      { name: 'roti', quantity: 20 },
-      { name: 'rajma', quantity: 30 },
-      { name: 'paneer', quantity: 10 },
-      { name: 'pav bhaji', quantity: 3 }
-    ];
-
     let xposition = d3
       .scaleBand()
-      .domain(data.map((d) => d.name))
+      .domain(fooddata.map((d) => d.name))
       .range([0, 400])
       .padding(0.2);
 
     let heightScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, (d) => d.quantity)])
+      .domain([0, d3.max(fooddata, (d) => d.quantity)])
       .range([0, 300]);
 
     let yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, (d) => d.quantity)])
+      .domain([0, d3.max(fooddata, (d) => d.quantity)])
       .range([300, 0]);
 
     const canvas = d3.select('.canvas');
 
     canvas
       .selectAll('rect')
-      .data(data)
+      .data(fooddata)
       .enter()
       .append('rect')
       .attr('height', (d) => heightScale(d.quantity))

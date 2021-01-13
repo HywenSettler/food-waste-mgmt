@@ -26,14 +26,6 @@ const History = () => {
                 <div className="col-3 d-flex flex-column justify-content-center column-style-div">
                   32MB
                 </div>
-                <div
-                  className="col-1 d-flex flex-column justify-content-center text-right"
-                  style={{
-                    height: '100%'
-                  }}
-                >
-                  x
-                </div>
               </div>
             </div>
           </div>

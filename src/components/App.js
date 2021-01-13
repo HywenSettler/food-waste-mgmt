@@ -29,12 +29,12 @@ const App = ({ isLoggedIn }) => {
           <Route path="/create-menu" exact component={MessCreateMenu} />
           <Route path="/donate" exact component={MessFoodDonate} />
           <Route path="/contact" exact component={ContactUs} />
-          {/* <ProtectedRoute
+          <ProtectedRoute
             path="/dashboard"
             exact
             component={Dashboard}
             isLoggedIn={isLoggedIn}
-          /> */}
+          />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/history" exact component={History} />
           <Route path="/menu" exact component={MenuDisplay} />
