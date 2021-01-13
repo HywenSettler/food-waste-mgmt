@@ -20,6 +20,8 @@ const Navbar = ({ isLoggedIn, orgName, ...props }) => {
   const initiateLogout = () => {
     axios.post('/logout').then((res) => {
       sessionStorage.clear();
+      localStorage.clear();
+
       props.logOut();
       history.push('/');
     });

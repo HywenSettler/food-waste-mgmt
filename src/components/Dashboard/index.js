@@ -30,7 +30,9 @@ const Dashboard = () => {
     phoneNumber = '',
     city = '',
     pincode = '',
-    profileImageUrl = 'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png'
+    profileImageUrl = 'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png',
+    isMenuCreated = false,
+    isNGO = true
   } = userDetails;
 
   return (
@@ -49,19 +51,21 @@ const Dashboard = () => {
             Hi!
             <div className="welcome-text">Welcome back</div>
           </span>
-          <div className="input-group my-3 ml-5 search-div">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search Contacts..."
-            />
-            <div className="input-group-append">
-              <span className="input-group-text" id="basic-addon2">
-                Search
-              </span>
+          {isNGO && (
+            <div className="input-group my-3 ml-5 search-div">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search Contacts..."
+              />
+              <div className="input-group-append">
+                <span className="input-group-text" id="basic-addon2">
+                  Search
+                </span>
+              </div>
             </div>
-          </div>
-          {chart && (
+          )}
+          {!isNGO && chart && (
             <Fragment>
               <BarChart />
               <button
@@ -73,7 +77,7 @@ const Dashboard = () => {
               </button>
             </Fragment>
           )}
-          {!chart && (
+          {!isNGO && !chart && (
             <Fragment>
               <PieChart />
               <button
@@ -95,24 +99,32 @@ const Dashboard = () => {
               alt="..."
             />
             <div className="card-body d-flex justify-content-center">
-              <Link to="/create-menu" className="btn btn-primary ml-4">
-                Create Your Mess Menu
-              </Link>
+              {!isMenuCreated ? (
+                <Link to="/create-menu" className="btn btn-primary ml-4">
+                  Create Your Mess Menu
+                </Link>
+              ) : (
+                <Link to="/menu" className="btn btn-primary ml-4">
+                  View Mess Menu
+                </Link>
+              )}
             </div>
           </div>
-          <div className="card mt-5 card-div second-search-div">
-            <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832248/food-waste-mgmt/donate-food.jpg"
-              className="card-img-top img-size"
-              style={{ borderRadius: '20px 20px 0px 0px' }}
-              alt="..."
-            />
-            <div className="card-body d-flex justify-content-center">
-              <Link to="/donate" className="btn btn-primary ml-4">
-                Donate Food
-              </Link>
+          {isMenuCreated && (
+            <div className="card mt-5 card-div second-search-div">
+              <img
+                src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832248/food-waste-mgmt/donate-food.jpg"
+                className="card-img-top img-size"
+                style={{ borderRadius: '20px 20px 0px 0px' }}
+                alt="..."
+              />
+              <div className="card-body d-flex justify-content-center">
+                <Link to="/donate" className="btn btn-primary ml-4">
+                  Donate Food
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
         </span>
         <span className="mt-3 card-span" style={{ height: 'inherit' }}>
           <div className="card side-span-card">
