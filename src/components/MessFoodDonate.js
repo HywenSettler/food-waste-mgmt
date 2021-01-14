@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import get from 'lodash.get';
 
 import './MessCreateMenu.css';
 import './MessFoodDonate.css';
@@ -16,47 +17,41 @@ const tabMap = {
 
 const MessFoodDonate = () => {
   const [menu, setMenu] = useState({
-    // breakfast: [],
-    breakfast: [
-      {
-        name: 'cutlet',
-        image_url:
-          'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
-        id: 1
-      },
-      {
-        name: 'sambhar',
-        image_url:
-          'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
-        id: 2
-      }
-    ],
+    breakfast: [],
     lunch: [],
     dinner: []
   });
 
+  const [quantities, setQuantities] = useState({});
+
   const [selectedTab, setSelectedTab] = useState(0);
 
-  // useEffect(() => {
-  //   axios.get('/menu').then((res) => {
-  //     let mappedData = {
-  //       breakfast: [],
-  //       lunch: [],
-  //       dinner: []
-  //     };
+  useEffect(() => {
+    axios.get('/menu').then((res) => {
+      let mappedData = {
+        breakfast: [],
+        lunch: [],
+        dinner: []
+      };
 
-  //     for (let item of res.data) {
-  //       mappedData[item.type].push(item);
-  //     }
+      for (let item of res.data) {
+        mappedData[item.type].push(item);
+      }
 
-  //     setMenu(mappedData);
-  //   });
-  // }, []);
+      setMenu(mappedData);
+    });
+  }, []);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(quantities);
+  };
 
   return (
     <div className="messcmbody">
       <Navbar />
-      <form className="msform">
+      <form className="msform" onSubmit={onFormSubmit}>
         <ul className="progressbar pl-0">
           {food.map((item, idx) => (
             <li key={idx} className={idx <= selectedTab ? 'active' : ''}>
@@ -89,6 +84,13 @@ const MessFoodDonate = () => {
                         type="number"
                         className="item-number"
                         min="0"
+                        value={get(quantities, item.id, 0)}
+                        onChange={(e) =>
+                          setQuantities({
+                            ...quantities,
+                            [item.id]: e.target.value
+                          })
+                        }
                       ></input>
                     </span>
                   </div>
@@ -106,46 +108,33 @@ const MessFoodDonate = () => {
           {selectedTab === 1 && (
             <>
               <div className="donate-foodlist">
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Pheromosa</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Kartana</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Celesteela</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Guzzlord</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
+                {menu.lunch.map((item) => (
+                  <div key={item.id} className="donate-food-item">
+                    <span className="food-image">
+                      <img
+                        src={item.image_url}
+                        height="50px"
+                        width="60px"
+                        alt=""
+                      />
+                    </span>
+                    <span className="food-name">{item.name}</span>
+                    <span>
+                      <input
+                        type="number"
+                        className="item-number"
+                        min="0"
+                        value={get(quantities, item.id, 0)}
+                        onChange={(e) =>
+                          setQuantities({
+                            ...quantities,
+                            [item.id]: e.target.value
+                          })
+                        }
+                      ></input>
+                    </span>
+                  </div>
+                ))}
               </div>
               <input
                 type="button"
@@ -166,46 +155,33 @@ const MessFoodDonate = () => {
           {selectedTab === 2 && (
             <>
               <div className="donate-foodlist">
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Pheromosa</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Kartana</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Celesteela</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
-                <div className="donate-food-item">
-                  <span className="donate-food-name">Guzzlord</span>
-                  <span>
-                    <input
-                      type="number"
-                      className="item-number"
-                      min="0"
-                    ></input>
-                  </span>
-                </div>
+                {menu.dinner.map((item) => (
+                  <div key={item.id} className="donate-food-item">
+                    <span className="food-image">
+                      <img
+                        src={item.image_url}
+                        height="50px"
+                        width="60px"
+                        alt=""
+                      />
+                    </span>
+                    <span className="food-name">{item.name}</span>
+                    <span>
+                      <input
+                        type="number"
+                        className="item-number"
+                        min="0"
+                        value={get(quantities, item.id, 0)}
+                        onChange={(e) =>
+                          setQuantities({
+                            ...quantities,
+                            [item.id]: e.target.value
+                          })
+                        }
+                      ></input>
+                    </span>
+                  </div>
+                ))}
               </div>
               <input
                 type="button"
