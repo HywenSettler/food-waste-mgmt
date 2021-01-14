@@ -1,166 +1,227 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import './MessCreateMenu.css';
 import './MessFoodDonate.css';
 
 import Navbar from './Navbar';
 
+const food = ['breakfast', 'lunch', 'dinner'];
+
+const tabMap = {
+  0: 'Breakfast',
+  1: 'Lunch',
+  2: 'Dinner'
+};
+
 const MessFoodDonate = () => {
+  const [menu, setMenu] = useState({
+    // breakfast: [],
+    breakfast: [
+      {
+        name: 'cutlet',
+        image_url:
+          'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
+        id: 1
+      },
+      {
+        name: 'sambhar',
+        image_url:
+          'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
+        id: 2
+      }
+    ],
+    lunch: [],
+    dinner: []
+  });
+
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  // useEffect(() => {
+  //   axios.get('/menu').then((res) => {
+  //     let mappedData = {
+  //       breakfast: [],
+  //       lunch: [],
+  //       dinner: []
+  //     };
+
+  //     for (let item of res.data) {
+  //       mappedData[item.type].push(item);
+  //     }
+
+  //     setMenu(mappedData);
+  //   });
+  // }, []);
+
   return (
     <div className="messcmbody">
       <Navbar />
       <form className="msform">
         <ul className="progressbar pl-0">
-          <li className="active">Breakfast</li>
-          <li>Lunch</li>
-          <li>Dinner</li>
+          {food.map((item, idx) => (
+            <li key={idx} className={idx <= selectedTab ? 'active' : ''}>
+              {item}
+            </li>
+          ))}
         </ul>
         <fieldset>
           <h2 className="fs-title">Donate food</h2>
-          <h3 className="fs-subtitle">Breakfast</h3>
+          <h3 className="fs-subtitle">{tabMap[selectedTab]}</h3>
           <div className="text-center">
             Quantities must be entered per person basis.
           </div>
-          <div className="donate-foodlist">
-            <div className="donate-food-item">
-              <span className="donate-food-name">Cutlets</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Bread slices</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-          </div>
-          <input
-            type="button"
-            name="next"
-            className="next action-button"
-            value="Next"
-          />
-        </fieldset>
-        <fieldset>
-          <h2 className="fs-title">Create your menu</h2>
-          <h3 className="fs-subtitle">Lunch</h3>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control add-item-input"
-              placeholder="Add food item"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary bg-success text-white"
+          {selectedTab === 0 && (
+            <>
+              <div className="donate-foodlist">
+                {menu.breakfast.map((item) => (
+                  <div key={item.id} className="donate-food-item">
+                    <span className="food-image">
+                      <img
+                        src={item.image_url}
+                        height="50px"
+                        width="60px"
+                        alt=""
+                      />
+                    </span>
+                    <span className="food-name">{item.name}</span>
+                    <span>
+                      <input
+                        type="number"
+                        className="item-number"
+                        min="0"
+                      ></input>
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <input
                 type="button"
-                id="button-addon2"
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="donate-foodlist">
-            <div className="donate-food-item">
-              <span className="donate-food-name">Pheromosa</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Kartana</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Celesteela</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Guzzlord</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-          </div>
-          <input
-            type="button"
-            name="previous"
-            className="previous action-button"
-            value="Previous"
-          />
-          <input
-            type="button"
-            name="next"
-            className="next action-button"
-            value="Next"
-          />
-        </fieldset>
-        <fieldset>
-          <h2 className="fs-title">Create your menu</h2>
-          <h3 className="fs-subtitle">Dinner</h3>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control add-item-input"
-              placeholder="Add food item"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary bg-success text-white"
+                onClick={() => setSelectedTab(selectedTab + 1)}
+                name="next"
+                className="next action-button"
+                value="Next"
+              />
+            </>
+          )}
+          {selectedTab === 1 && (
+            <>
+              <div className="donate-foodlist">
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Pheromosa</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Kartana</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Celesteela</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Guzzlord</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+              </div>
+              <input
                 type="button"
-                id="button-addon2"
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="donate-foodlist">
-            <div className="donate-food-item">
-              <span className="donate-food-name">Pheromosa</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Kartana</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Celesteela</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-            <div className="donate-food-item">
-              <span className="donate-food-name">Guzzlord</span>
-              <span>
-                <input type="number" className="item-number" min="0"></input>
-              </span>
-            </div>
-          </div>
-          <input
-            type="button"
-            name="previous"
-            className="previous action-button"
-            value="Previous"
-          />
-          <input
-            type="submit"
-            name="submit"
-            className="submit action-button"
-            value="Donate"
-          />
+                onClick={() => setSelectedTab(selectedTab - 1)}
+                name="previous"
+                className="previous action-button"
+                value="Previous"
+              />
+              <input
+                type="button"
+                onClick={() => setSelectedTab(selectedTab + 1)}
+                name="next"
+                className="next action-button"
+                value="Next"
+              />
+            </>
+          )}
+          {selectedTab === 2 && (
+            <>
+              <div className="donate-foodlist">
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Pheromosa</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Kartana</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Celesteela</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+                <div className="donate-food-item">
+                  <span className="donate-food-name">Guzzlord</span>
+                  <span>
+                    <input
+                      type="number"
+                      className="item-number"
+                      min="0"
+                    ></input>
+                  </span>
+                </div>
+              </div>
+              <input
+                type="button"
+                onClick={() => setSelectedTab(selectedTab - 1)}
+                name="previous"
+                className="previous action-button"
+                value="Previous"
+              />
+              <input
+                type="submit"
+                name="submit"
+                className="submit action-button"
+                value="Donate"
+              />
+            </>
+          )}
         </fieldset>
       </form>
     </div>
