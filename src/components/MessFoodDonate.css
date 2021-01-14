@@ -6,7 +6,7 @@
   overflow-y: auto;
 }
 .donate-food-item {
-  margin: 10px 0px;
+  margin: 10px 10px 30px 10px;
   height: 25px;
   display: flex;
   justify-content: space-between;
@@ -17,6 +17,7 @@
 }
 .item-number {
   border: none;
+  margin-top: 10px;
   width: 35px;
   border-radius: 2px;
   height: 25px;
