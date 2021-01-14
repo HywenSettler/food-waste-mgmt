@@ -17,22 +17,34 @@ window.utils = {
     });
   },
   getOrgName: function () {
-    return localStorage.getItem('org_name');
+    return this.shouldRememberUser()
+      ? localStorage.getItem('org_name')
+      : sessionStorage.getItem('org_name');
   },
   setOrgName: function (orgName) {
-    localStorage.setItem('org_name', orgName);
+    this.shouldRememberUser()
+      ? localStorage.setItem('org_name', orgName)
+      : sessionStorage.setItem('org_name', orgName);
   },
   ifNGO: function () {
-    return JSON.parse(localStorage.getItem('isNGO'));
+    return this.shouldRememberUser()
+      ? JSON.parse(localStorage.getItem('isNGO'))
+      : JSON.parse(sessionStorage.getItem('isNGO'));
   },
   isNGO: function (bool) {
-    localStorage.setItem('isNGO', JSON.stringify(bool));
+    this.shouldRememberUser()
+      ? localStorage.setItem('isNGO', JSON.stringify(bool))
+      : sessionStorage.setItem('isNGO', JSON.stringify(bool));
   },
   ifLoggedIn: function () {
-    return JSON.parse(localStorage.getItem('is_logged_in'));
+    return this.shouldRememberUser()
+      ? JSON.parse(localStorage.getItem('is_logged_in'))
+      : JSON.parse(sessionStorage.getItem('is_logged_in'));
   },
   isLoggedIn: function (bool) {
-    localStorage.setItem('is_logged_in', JSON.stringify(bool));
+    this.shouldRememberUser()
+      ? localStorage.setItem('is_logged_in', JSON.stringify(bool))
+      : sessionStorage.setItem('is_logged_in', JSON.stringify(bool));
   },
   shouldRememberUser: function () {
     return JSON.parse(localStorage.getItem('remember_user'));
