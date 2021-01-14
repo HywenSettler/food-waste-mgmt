@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import ProtectedRoute from './ProtectedRoute';
 import Unauthorized from './Unauthorized';
@@ -13,31 +12,23 @@ import Dashboard from './Dashboard';
 import History from './History';
 import MenuDisplay from './MenuDisplay';
 
-const App = ({ isLoggedIn }) => {
+const App = () => {
   return (
     <div className="container-fluid px-0">
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/about" exact component={AboutUs} />
-          {/* <ProtectedRoute
+          <ProtectedRoute
             path="/create-menu"
             exact
             component={MessCreateMenu}
-            isLoggedIn={isLoggedIn}
-          /> */}
-          <Route path="/create-menu" exact component={MessCreateMenu} />
-          <Route path="/donate" exact component={MessFoodDonate} />
-          <Route path="/contact" exact component={ContactUs} />
-          <ProtectedRoute
-            path="/dashboard"
-            exact
-            component={Dashboard}
-            isLoggedIn={isLoggedIn}
           />
-          <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/history" exact component={History} />
-          <Route path="/menu" exact component={MenuDisplay} />
+          <ProtectedRoute path="/donate" exact component={MessFoodDonate} />
+          <Route path="/contact" exact component={ContactUs} />
+          <ProtectedRoute path="/dashboard" exact component={Dashboard} />
+          <ProtectedRoute path="/history" exact component={History} />
+          <ProtectedRoute path="/menu" exact component={MenuDisplay} />
           <Route path="/unauthorized" exact component={Unauthorized} />
         </Switch>
       </BrowserRouter>
@@ -45,10 +36,4 @@ const App = ({ isLoggedIn }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: state.auth.isLoggedIn
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

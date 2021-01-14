@@ -1,31 +1,20 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import './Homepage.css';
 
 import Navbar from '../Navbar';
-import { logIn } from '../../actions';
 
-const HomePage = (props) => {
+const HomePage = () => {
   const history = useHistory();
 
   useEffect(() => {
     if (window.utils.shouldRememberUser()) {
       window.utils.createAuthInterceptor(axios);
 
-      axios
-        .get('/user')
-        .then((res) => {
-          const { orgName, isNGO } = res.data;
-
-          props.logIn({ isNGO, orgName });
-
-          history.push('/dashboard');
-        })
-        .catch((err) => console.log(err));
+      history.push('/dashboard');
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -250,4 +239,4 @@ const HomePage = (props) => {
   );
 };
 
-export default connect(null, { logIn })(HomePage);
+export default HomePage;

@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import axios from 'axios';
 
-import { logOut } from '../../actions';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
 
 import './Navbar.css';
 
-const Navbar = ({ isLoggedIn, orgName, ...props }) => {
+const Navbar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const history = useHistory();
+
+  const isLoggedIn = window.utils.ifLoggedIn();
+  const orgName = window.utils.getOrgName();
 
   const initiateLogout = () => {
     axios.post('/logout').then((res) => {
       sessionStorage.clear();
       localStorage.clear();
 
-      props.logOut();
       history.push('/');
     });
   };
@@ -103,11 +102,4 @@ const Navbar = ({ isLoggedIn, orgName, ...props }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: state.auth.isLoggedIn,
-    orgName: state.auth.orgName
-  };
-};
-
-export default connect(mapStateToProps, { logOut })(Navbar);
+export default Navbar;

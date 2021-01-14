@@ -1,6 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import axios from 'axios';
 
 import BarChart from '../BarChart';
@@ -154,10 +153,4 @@ const Dashboard = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isNGO: state.auth.isNGO
-  };
-};
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

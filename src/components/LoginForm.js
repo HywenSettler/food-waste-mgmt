@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import { logIn } from '../actions';
-
-const LoginForm = (props) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [rememberUser, setRememberUser] = useState(false);
 
   const history = useHistory();
@@ -27,17 +25,23 @@ const LoginForm = (props) => {
         // console.log(window.utils);
 
         window.utils.rememberUser(rememberUser);
+        window.utils.isLoggedIn(true);
 
         window.utils.setAccessToken(access_token);
         window.utils.setRefreshToken(refresh_token);
 
         window.utils.createAuthInterceptor(axios);
 
-        props.logIn({ isNGO, orgName });
+        window.utils.setOrgName(orgName);
+        window.utils.isNGO(isNGO);
 
         history.push('/dashboard');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+
+        setError('Invalid credentials provided.');
+      });
   };
 
   return (
@@ -52,9 +56,6 @@ const LoginForm = (props) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <small id="emailHelp" className="form-text text-muted">
-          We'll never share your email with anyone else.
-        </small>
       </div>
       <div className="form-group">
         <input
@@ -79,6 +80,7 @@ const LoginForm = (props) => {
           </label>
         </div>
       </div>
+      <small className="form-text text-danger">{error}</small>
       <button type="submit" className="btn btn-success btn-lg btn-block">
         Login
       </button>
@@ -86,4 +88,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default connect(null, { logIn })(LoginForm);
+export default LoginForm;

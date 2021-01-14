@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
-import { logIn } from '../actions';
 
 import './RegisterForm.css';
 
@@ -169,13 +166,15 @@ const RegisterForm = (props) => {
         } = res.data;
 
         window.utils.rememberUser(false);
+        window.utils.isLoggedIn(true);
 
         window.utils.setAccessToken(access_token);
         window.utils.setRefreshToken(refresh_token);
 
         window.utils.createAuthInterceptor(axios);
 
-        props.logIn({ isNGO, orgName });
+        window.utils.setOrgName(orgName);
+        window.utils.isNGO(isNGO);
 
         history.push('/dashboard');
       })
@@ -380,4 +379,4 @@ const RegisterForm = (props) => {
   );
 };
 
-export default connect(null, { logIn })(RegisterForm);
+export default RegisterForm;
