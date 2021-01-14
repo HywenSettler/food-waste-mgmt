@@ -141,9 +141,15 @@ const Dashboard = () => {
                 <p>
                   <b>Address</b>: {address}
                 </p>
-                <p>City: {city}</p>
-                <p>PIN Code: {pincode}</p>
-                <p>Phone Number: {phoneNumber}</p>
+                <p>
+                  <b>City</b>: {city}
+                </p>
+                <p>
+                  <b>PIN Code</b>: {pincode}
+                </p>
+                <p>
+                  <b>Phone Number</b>: {phoneNumber}
+                </p>
               </div>
             </div>
           </div>

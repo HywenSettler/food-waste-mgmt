@@ -1,6 +1,5 @@
 export const data = [
-  { name: 'roti', quantity: 20 },
-  { name: 'rajma', quantity: 30 },
-  { name: 'paneer', quantity: 10 },
-  { name: 'pav bhaji', quantity: 3 }
+  { name: 'Milk', quantity: 4 },
+  { name: 'Butter Chapati', quantity: 15 },
+  { name: 'Rice', quantity: 50 }
 ];

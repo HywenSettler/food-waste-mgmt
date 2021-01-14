@@ -65,7 +65,7 @@ const PieChart = ({ fooddata }) => {
 
   return (
     <div>
-      <svg className="drawSpace ml-3 mt-3" height="400" width="500"></svg>
+      <svg className="drawSpace ml-3 mt-3" height="400" width="600"></svg>
     </div>
   );
 };

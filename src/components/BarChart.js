@@ -54,7 +54,7 @@ const BarChart = ({ fooddata }) => {
       <svg
         className="canvas ml-3 mt-3"
         height="400"
-        width="500"
+        width="600"
         transform="translate(50,50)"
       ></svg>
     </div>

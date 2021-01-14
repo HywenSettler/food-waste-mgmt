@@ -9,7 +9,7 @@ const ContactUs = () => {
       <Navbar />
       <div className="externcontdiv">
         <div className="container contdiv">
-          <h1 className="mb-4 headingstyle">Drop Us a line</h1>
+          <h1 className="mb-4 headingstyle">Drop Us a Line</h1>
           <form>
             <div className="form-group">
               <input
@@ -44,14 +44,14 @@ const ContactUs = () => {
                 placeholder="Message"
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary mt-3">
+            <button type="submit" className="btn btn-primary mt-3 button-width">
               Submit
             </button>
           </form>
         </div>
         <div className="container imagediv">
           <img
-            src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699318/food-waste-mgmt/children-sitting.jpg"
+            src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1610650548/food-waste-mgmt/Contact.png"
             className="imagesize"
             alt=""
           />
