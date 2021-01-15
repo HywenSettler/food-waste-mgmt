@@ -75,6 +75,6 @@
 }
 
 .scroll-div {
-  overflow: scroll;
+  overflow: auto;
   height: 500px;
 }

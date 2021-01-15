@@ -49,6 +49,12 @@ const MessFoodDonate = () => {
     e.preventDefault();
 
     console.log(quantities);
+    for (let [foodId, quantity] of Object.items(quantities)) {
+      if (quantity <= 0) {
+        delete quantities[foodId];
+      }
+    }
+
     axios.post('/donate', quantities).then((res) => {
       history.push('/dashboard');
     });

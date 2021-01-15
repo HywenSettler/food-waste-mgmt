@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Navbar from './Navbar';
@@ -100,7 +101,9 @@ const MenuDisplay = () => {
           paddingTop: '20px'
         }}
       >
-        <button className="btn btn-warning">Go to Dashboard</button>
+        <Link to="/dashboard" className="btn btn-warning">
+          Go to Dashboard
+        </Link>
       </div>
     </Fragment>
   );

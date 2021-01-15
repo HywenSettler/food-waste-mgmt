@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import AsyncSelect from 'react-select/async';
 import debounce from 'lodash.debounce';
@@ -29,6 +29,8 @@ const Dashboard = () => {
 
   const [userDetails, setUserDetails] = useState({});
   const [donations, setDonations] = useState([]);
+
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('/user').then((res) => {
@@ -113,10 +115,21 @@ const Dashboard = () => {
                       alt="..."
                     />
                     <div className="card-body d-flex justify-content-center">
-                      {donor.orgName}
+                      {donor.orgName} - {food.quantity} servings
                     </div>
                     <div style={{ margin: 'auto' }}>
-                      <button className="btn btn-success mb-2">Accept</button>
+                      <button
+                        onClick={() => {
+                          axios
+                            .post('/receive', { donationId: id })
+                            .then((res) => {
+                              history.push('/history');
+                            });
+                        }}
+                        className="btn btn-success mb-2"
+                      >
+                        Accept
+                      </button>
                     </div>
                   </div>
                 ))}
