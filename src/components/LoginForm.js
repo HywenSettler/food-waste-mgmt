@@ -7,11 +7,13 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [rememberUser, setRememberUser] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const history = useHistory();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .post('/login', { email, password })
@@ -36,11 +38,13 @@ const LoginForm = () => {
         window.utils.isNGO(isNGO);
 
         history.push('/dashboard');
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
 
         setError('Invalid credentials provided.');
+        setLoading(false);
       });
   };
 
@@ -82,7 +86,11 @@ const LoginForm = () => {
       </div>
       <small className="form-text text-danger">{error}</small>
       <button type="submit" className="btn btn-success btn-lg btn-block">
-        Login
+        {!isLoading ? (
+          'Login'
+        ) : (
+          <div class="spinner-border text-light" role="status"></div>
+        )}
       </button>
     </form>
   );

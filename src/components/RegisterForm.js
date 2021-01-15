@@ -101,6 +101,8 @@ const categoryValue = (isNGO) => {
 };
 
 const RegisterForm = (props) => {
+  const [isLoading, setLoading] = useState(false);
+
   const [formState, dispatch] = useReducer(registerFormReducer, {
     email: '',
     password: '',
@@ -144,6 +146,7 @@ const RegisterForm = (props) => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let { profileImageUrl, isNGO, email, password } = formState;
     if (profileImageUrl.length === 0) {
@@ -177,8 +180,12 @@ const RegisterForm = (props) => {
         window.utils.isNGO(isNGO);
 
         history.push('/dashboard');
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
 
     console.log(formState);
   };
@@ -368,7 +375,11 @@ const RegisterForm = (props) => {
                   onClick={onFormSubmit}
                   className="btn btn-primary btn-lg mt-4"
                 >
-                  Register
+                  {!isLoading ? (
+                    'Register'
+                  ) : (
+                    <div class="spinner-border text-light" role="status"></div>
+                  )}
                 </button>
               </div>
             </div>
