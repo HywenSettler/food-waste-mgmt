@@ -74,8 +74,8 @@ window.utils = {
   }
 };
 
-// axios.defaults.baseURL = 'https://food-mgmt-api.herokuapp.com/';
-axios.defaults.baseURL = 'http://localhost:5000/';
+axios.defaults.baseURL = 'https://food-mgmt-api.herokuapp.com/';
+// axios.defaults.baseURL = 'http://localhost:5000/';
 
 // Function that will be called to refresh authorization
 const refreshAuthLogic = (failedRequest) =>

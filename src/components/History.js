@@ -23,24 +23,35 @@ const History = () => {
           <div className="card-header"></div>
           <div className="card-body">
             <div className="container">
-              <div className="row" style={{ height: '20%' }}>
-                {history.map(({ donor, food }) => (
-                  <>
-                    <div className="col-3">
-                      <img
-                        src={food.image_url}
-                        style={{ height: '100px', width: '100px' }}
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-4 d-flex flex-column justify-content-center column-style-div">
-                      {food.name}
-                    </div>
-                    <div className="col-3 d-flex flex-column justify-content-center column-style-div">
-                      {food.quantity}
-                    </div>
-                  </>
-                ))}
+              <div className="row" style={{ height: '20%', margin: '5px 0px' }}>
+                <div className="col-3">
+                  <img
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608285294/food-waste-mgmt/food-items/breakfast/milk.jpg"
+                    style={{ height: '100px', width: '100px' }}
+                    alt=""
+                  />
+                </div>
+                <div className="col-4 d-flex flex-column justify-content-center column-style-div">
+                  Milk
+                </div>
+                <div className="col-3 d-flex flex-column justify-content-center column-style-div">
+                  4
+                </div>
+              </div>
+              <div className="row" style={{ height: '20%', margin: '5px 0px' }}>
+                <div className="col-3">
+                  <img
+                    src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608285289/food-waste-mgmt/food-items/breakfast/pav-bhaji.jpg"
+                    style={{ height: '100px', width: '100px' }}
+                    alt=""
+                  />
+                </div>
+                <div className="col-4 d-flex flex-column justify-content-center column-style-div">
+                  Pav Bhaji
+                </div>
+                <div className="col-3 d-flex flex-column justify-content-center column-style-div">
+                  15
+                </div>
               </div>
             </div>
           </div>

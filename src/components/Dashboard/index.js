@@ -7,6 +7,7 @@ import BarChart from '../BarChart';
 import PieChart from '../PieChart';
 import Navbar from '../Navbar';
 import { data } from '../../FoodData';
+import FoodSearch from '../FoodSearch';
 
 import './Dashboard.css';
 
@@ -81,21 +82,7 @@ const Dashboard = () => {
                 // onChange={handleChange}
                 placeholder="Search food items ..."
               />
-              <div className="row">
-                {donors.map((donor) => (
-                  <div className="card card-div">
-                    <img
-                      src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699244/food-waste-mgmt/hungry-children.jpg"
-                      className="card-img-top img-size"
-                      style={{ borderRadius: '20px 20px 0px 0px' }}
-                      alt="..."
-                    />
-                    <div className="card-body d-flex justify-content-center">
-                      Sandzzzgftjhg
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <FoodSearch />
             </>
           )}
           {!isNGO && chart && (
