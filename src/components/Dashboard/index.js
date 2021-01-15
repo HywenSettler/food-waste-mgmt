@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import AsyncSelect from 'react-select/async';
 
 import BarChart from '../BarChart';
 import PieChart from '../PieChart';
@@ -17,12 +18,30 @@ const Dashboard = () => {
   };
 
   const [userDetails, setUserDetails] = useState({});
+  const [donors, setDonors] = useState([1, 2, 3, 4]);
 
   useEffect(() => {
     axios.get('/user').then((res) => {
       setUserDetails(res.data);
     });
   }, []);
+
+  const loadFoodItems = (inputValue, callback) => {
+    axios
+      .get('/items', {
+        params: {
+          searchQuery: inputValue
+        }
+      })
+      .then((res) => {
+        callback(
+          res.data.map((item) => ({
+            label: item.name,
+            value: item
+          }))
+        );
+      });
+  };
 
   const {
     email = '',
@@ -52,18 +71,32 @@ const Dashboard = () => {
             <div className="welcome-text">Welcome back</div>
           </span>
           {isNGO && (
-            <div className="input-group my-3 ml-5 search-div">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search Contacts..."
+            <>
+              <AsyncSelect
+                className="basic-single"
+                classNamePrefix="select"
+                isSearchable
+                name="color"
+                loadOptions={loadFoodItems}
+                // onChange={handleChange}
+                placeholder="Search food items ..."
               />
-              <div className="input-group-append">
-                <span className="input-group-text" id="basic-addon2">
-                  Search
-                </span>
+              <div className="row">
+                {donors.map((donor) => (
+                  <div className="card card-div">
+                    <img
+                      src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1607699244/food-waste-mgmt/hungry-children.jpg"
+                      className="card-img-top img-size"
+                      style={{ borderRadius: '20px 20px 0px 0px' }}
+                      alt="..."
+                    />
+                    <div className="card-body d-flex justify-content-center">
+                      Sandzzzgftjhg
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
+            </>
           )}
           {!isNGO && chart && (
             <Fragment>
@@ -99,11 +132,17 @@ const Dashboard = () => {
               alt="..."
             />
             <div className="card-body d-flex justify-content-center">
-              {!isMenuCreated ? (
+              {isNGO && (
+                <Link to="/history" className="btn btn-primary ml-4">
+                  View Accept History
+                </Link>
+              )}
+              {!isNGO && !isMenuCreated && (
                 <Link to="/create-menu" className="btn btn-primary ml-4">
                   Create Your Mess Menu
                 </Link>
-              ) : (
+              )}
+              {!isNGO && isMenuCreated && (
                 <Link to="/menu" className="btn btn-primary ml-4">
                   View Mess Menu
                 </Link>

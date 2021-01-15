@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './History.css';
 
 import Navbar from './Navbar';
 
 const History = () => {
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    axios.get('/history').then((res) => {
+      setHistory(res.data);
+    });
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -15,19 +24,23 @@ const History = () => {
           <div className="card-body">
             <div className="container">
               <div className="row" style={{ height: '20%' }}>
-                <div className="col-3">
-                  <img
-                    src="assets/images/children-sitting.jpg"
-                    style={{ height: '100px', width: '100px' }}
-                    alt=""
-                  />
-                </div>
-                <div className="col-4 d-flex flex-column justify-content-center column-style-div">
-                  Free 100 something
-                </div>
-                <div className="col-3 d-flex flex-column justify-content-center column-style-div">
-                  32MB
-                </div>
+                {history.map(({ donor, food }) => (
+                  <>
+                    <div className="col-3">
+                      <img
+                        src={food.image_url}
+                        style={{ height: '100px', width: '100px' }}
+                        alt=""
+                      />
+                    </div>
+                    <div className="col-4 d-flex flex-column justify-content-center column-style-div">
+                      {food.name}
+                    </div>
+                    <div className="col-3 d-flex flex-column justify-content-center column-style-div">
+                      {food.quantity}
+                    </div>
+                  </>
+                ))}
               </div>
             </div>
           </div>

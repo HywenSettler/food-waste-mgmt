@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import get from 'lodash.get';
 
@@ -26,6 +27,8 @@ const MessFoodDonate = () => {
 
   const [selectedTab, setSelectedTab] = useState(0);
 
+  const history = useHistory();
+
   useEffect(() => {
     axios.get('/menu').then((res) => {
       let mappedData = {
@@ -46,6 +49,9 @@ const MessFoodDonate = () => {
     e.preventDefault();
 
     console.log(quantities);
+    axios.post('/donate', quantities).then((res) => {
+      history.push('/dashboard');
+    });
   };
 
   return (

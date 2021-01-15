@@ -104,6 +104,7 @@ const MessCreateMenu = () => {
             name="color"
             loadOptions={loadFoodItems}
             onChange={handleChange}
+            placeholder="Search food items ..."
           />
           {selectedTab === 0 && (
             <Fragment>
