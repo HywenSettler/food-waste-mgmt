@@ -93,6 +93,15 @@ const MenuDisplay = () => {
           </div>
         </div>
       </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: '20px'
+        }}
+      >
+        <button className="btn btn-warning">Go to Dashboard</button>
+      </div>
     </Fragment>
   );
 };

@@ -8,7 +8,6 @@ import BarChart from '../BarChart';
 import PieChart from '../PieChart';
 import Navbar from '../Navbar';
 import { data } from '../../FoodData';
-import FoodSearch from '../FoodSearch';
 
 import './Dashboard.css';
 
@@ -104,7 +103,7 @@ const Dashboard = () => {
               />
               <div className="row scroll-div">
                 {donations.map(({ id, donor, food }) => (
-                  <div key={id} className="card card-div">
+                  <div key={id} className="card card-div1">
                     <img
                       src={donor.profileImageUrl}
                       className="card-img-top img-size"
@@ -115,6 +114,9 @@ const Dashboard = () => {
                     />
                     <div className="card-body d-flex justify-content-center">
                       {donor.orgName}
+                    </div>
+                    <div style={{ margin: 'auto' }}>
+                      <button className="btn btn-success mb-2">Accept</button>
                     </div>
                   </div>
                 ))}

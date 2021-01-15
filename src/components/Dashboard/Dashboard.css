@@ -55,6 +55,15 @@
   cursor: pointer;
 }
 
+.card-div1 {
+  height: 300px;
+  width: 18rem;
+  border-radius: 20px 20px;
+  background-color: lavender;
+  margin: 10px 10px 0px 10px;
+  cursor: pointer;
+}
+
 .img-size {
   height: 200px;
 }
