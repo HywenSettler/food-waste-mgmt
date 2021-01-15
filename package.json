@@ -11,6 +11,7 @@
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.2.2",
     "d3": "^6.3.1",
+    "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

@@ -2,6 +2,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AsyncSelect from 'react-select/async';
+import debounce from 'lodash.debounce';
 
 import BarChart from '../BarChart';
 import PieChart from '../PieChart';
@@ -11,6 +12,15 @@ import FoodSearch from '../FoodSearch';
 
 import './Dashboard.css';
 
+const ACCEPT_HISTORY_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832393/food-waste-mgmt/food-search.jpg';
+const MESS_MENU_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832162/food-waste-mgmt/menu-image.jpg';
+const DONATE_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832248/food-waste-mgmt/donate-food.jpg';
+const DEFAULT_PROFILE_IMG_URL =
+  'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png';
+
 const Dashboard = () => {
   // false - Pie Chart & true - Bar Chart
   const [chart, setChart] = useState(false);
@@ -19,7 +29,7 @@ const Dashboard = () => {
   };
 
   const [userDetails, setUserDetails] = useState({});
-  const [donors, setDonors] = useState([1, 2, 3, 4]);
+  const [donations, setDonations] = useState([]);
 
   useEffect(() => {
     axios.get('/user').then((res) => {
@@ -27,7 +37,7 @@ const Dashboard = () => {
     });
   }, []);
 
-  const loadFoodItems = (inputValue, callback) => {
+  const _loadFoodItems = (inputValue, callback) => {
     axios
       .get('/items', {
         params: {
@@ -44,13 +54,23 @@ const Dashboard = () => {
       });
   };
 
+  const loadFoodItems = debounce(_loadFoodItems, 400);
+
+  const handleChange = (selectedOption) => {
+    const foodId = selectedOption.value.id;
+
+    axios.get('/receive', { params: { foodId } }).then((res) => {
+      setDonations(res.data);
+    });
+  };
+
   const {
     email = '',
     address = '',
     phoneNumber = '',
     city = '',
     pincode = '',
-    profileImageUrl = 'https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png',
+    profileImageUrl = DEFAULT_PROFILE_IMG_URL,
     isMenuCreated = false,
     isNGO = true
   } = userDetails;
@@ -62,7 +82,7 @@ const Dashboard = () => {
         <span className="welcome-span">
           <span>
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608568048/food-waste-mgmt/Username.png"
+              src={DEFAULT_PROFILE_IMG_URL}
               className="image-dim"
               alt="..."
             />
@@ -79,10 +99,26 @@ const Dashboard = () => {
                 isSearchable
                 name="color"
                 loadOptions={loadFoodItems}
-                // onChange={handleChange}
+                onChange={handleChange}
                 placeholder="Search food items ..."
               />
-              <FoodSearch />
+              <div className="row scroll-div">
+                {donations.map(({ id, donor, food }) => (
+                  <div key={id} className="card card-div">
+                    <img
+                      src={donor.profileImageUrl}
+                      className="card-img-top img-size"
+                      style={{
+                        borderRadius: '20px 20px 0px 0px'
+                      }}
+                      alt="..."
+                    />
+                    <div className="card-body d-flex justify-content-center">
+                      {donor.orgName}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </>
           )}
           {!isNGO && chart && (
@@ -113,7 +149,7 @@ const Dashboard = () => {
         <span className="card-span mt-2">
           <div className="card card-div">
             <img
-              src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832162/food-waste-mgmt/menu-image.jpg"
+              src={isNGO ? ACCEPT_HISTORY_IMG_URL : MESS_MENU_IMG_URL}
               className="card-img-top img-size"
               style={{ borderRadius: '20px 20px 0px 0px' }}
               alt="..."
@@ -139,7 +175,7 @@ const Dashboard = () => {
           {isMenuCreated && (
             <div className="card mt-5 card-div second-search-div">
               <img
-                src="https://res.cloudinary.com/dc2o7coc1/image/upload/v1608832248/food-waste-mgmt/donate-food.jpg"
+                src={DONATE_IMG_URL}
                 className="card-img-top img-size"
                 style={{ borderRadius: '20px 20px 0px 0px' }}
                 alt="..."

@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import AsyncSelect from 'react-select/async';
+import debounce from 'lodash.debounce';
 
 import Navbar from './Navbar';
 
@@ -34,7 +35,7 @@ const MessCreateMenu = () => {
     });
   };
 
-  const loadFoodItems = (inputValue, callback) => {
+  const _loadFoodItems = (inputValue, callback) => {
     axios
       .get('/items', {
         params: {
@@ -51,6 +52,8 @@ const MessCreateMenu = () => {
         );
       });
   };
+
+  const loadFoodItems = debounce(_loadFoodItems, 400);
 
   const handleChange = (selectedOption) => {
     const foodId = selectedOption.value.id;

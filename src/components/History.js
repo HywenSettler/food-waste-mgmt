@@ -57,7 +57,7 @@ const History = () => {
           </div>
           <div className="card-footer text-muted d-flex flex-row-reverse">
             <Link to="/dashboard" className="btn btn-primary">
-              Go to profile
+              Go to dashboard
             </Link>
           </div>
         </div>
