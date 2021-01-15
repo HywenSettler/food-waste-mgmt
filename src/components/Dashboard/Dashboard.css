@@ -64,3 +64,8 @@
   height: 97%;
   border-radius: 15px;
 }
+
+.scroll-div {
+  overflow: scroll;
+  height: 500px;
+}
