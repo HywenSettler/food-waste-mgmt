@@ -89,7 +89,7 @@ const LoginForm = () => {
         {!isLoading ? (
           'Login'
         ) : (
-          <div class="spinner-border text-light" role="status"></div>
+          <div className="spinner-border text-light" role="status"></div>
         )}
       </button>
     </form>

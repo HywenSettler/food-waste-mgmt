@@ -378,7 +378,10 @@ const RegisterForm = (props) => {
                   {!isLoading ? (
                     'Register'
                   ) : (
-                    <div class="spinner-border text-light" role="status"></div>
+                    <div
+                      className="spinner-border text-light"
+                      role="status"
+                    ></div>
                   )}
                 </button>
               </div>
