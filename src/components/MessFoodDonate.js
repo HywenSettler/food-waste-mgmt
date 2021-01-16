@@ -49,7 +49,7 @@ const MessFoodDonate = () => {
     e.preventDefault();
 
     console.log(quantities);
-    for (let [foodId, quantity] of Object.items(quantities)) {
+    for (let [foodId, quantity] of Object.entries(quantities)) {
       if (quantity <= 0) {
         delete quantities[foodId];
       }
