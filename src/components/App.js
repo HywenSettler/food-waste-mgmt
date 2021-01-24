@@ -24,7 +24,7 @@ const App = () => {
             exact
             component={MessCreateMenu}
           />
-          <Route path="/donate" exact component={MessFoodDonate} />
+          <ProtectedRoute path="/donate" exact component={MessFoodDonate} />
           <Route path="/contact" exact component={ContactUs} />
           <ProtectedRoute path="/dashboard" exact component={Dashboard} />
           <ProtectedRoute path="/history" exact component={History} />
